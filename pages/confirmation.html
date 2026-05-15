@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Commande Confirmée | Chedoudoue</title>
+    <link rel="stylesheet" href="assets/css/theme.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .header-minimal {
+        padding-block: var(--space-6);
+        text-align: center;
+        border-bottom: var(--border-smoke);
+        background: var(--color-obsidian);
+      }
+      .confirmation-box {
+        max-width: 600px;
+        margin: 0 auto;
+        background: var(--color-graphite);
+        padding: var(--space-12);
+        border: var(--border-thin);
+        text-align: center;
+      }
+      .btn-outline {
+        display: inline-flex;
+        padding: var(--space-4) var(--space-8);
+        border: var(--border-thick);
+        color: var(--color-gold);
+        text-decoration: none;
+        font-family: var(--font-body);
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-widest);
+        font-weight: var(--fw-bold);
+        transition: all var(--transition-fast);
+      }
+      .btn-outline:hover {
+        background: var(--gradient-gold);
+        color: var(--color-black);
+      }
+
+      .success-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 1px solid var(--color-gold);
+        margin-bottom: var(--space-6);
+        color: var(--color-gold);
+      }
+    </style>
+  </head>
+  <body class="section--dark flex-col" style="min-height: 100vh">
+    <header class="header-minimal">
+      <a
+        href="index.html"
+        class="font-display text-large text-gold tracking-widest text-upper"
+        >Chedoudoue</a
+      >
+    </header>
+
+    <main class="section flex items-center justify-center flex-grow">
+      <div class="container">
+        <div class="confirmation-box">
+          <!-- Icône Succès (SVG sémantique) -->
+          <div class="success-icon">
+            ```svg
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            ```
+          </div>
+
+          <h1
+            class="font-display text-gradient-gold mb-2"
+            style="font-size: 2rem"
+          >
+            Félicitations
+          </h1>
+          <p class="font-editorial text-large text-ivory mb-8">
+            Votre commande a été traitée avec succès.
+          </p>
+
+          <div class="border-y border-smoke py-6 mb-8">
+            <p
+              class="font-body text-xs text-silver tracking-wider uppercase mb-2"
+            >
+              Numéro de commande
+            </p>
+            <p
+              class="font-body text-large text-gold fw-bold tracking-widest mb-4"
+            >
+              #CHD-849201
+            </p>
+
+            <p class="font-editorial text-silver">
+              Un e-mail de confirmation contenant les détails de votre achat et
+              le lien de suivi de livraison vient de vous être envoyé.
+            </p>
+          </div>
+
+          <p class="font-body text-xs text-mist mb-8">
+            Notre service client se tient à votre entière disposition pour toute
+            demande concernant votre commande.
+          </p>
+
+          <a href="shop.html" class="btn-outline">Retour à la boutique</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-center py-6 border-t border-smoke">
+      <p class="font-body text-xs text-mist tracking-widest text-upper">
+        &copy; 2026 Chedoudoue.
+      </p>
+    </footer>
+  </body>
+</html>

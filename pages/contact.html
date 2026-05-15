@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | CHEDOUDOUE</title>
+    <link rel="stylesheet" href="../assets/css/theme.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/premium.css" />
+    <link rel="stylesheet" href="../assets/css/animations.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <link rel="stylesheet" href="../assets/css/notifications.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .contact-hero {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(212, 175, 55, 0.1) 100%);
+        padding: var(--space-16) var(--space-8);
+        text-align: center;
+        border-bottom: var(--border-smoke);
+      }
+
+      .contact-hero h1 {
+        font-family: var(--font-display);
+        font-size: var(--text-5xl);
+        color: var(--color-gold);
+        margin-bottom: var(--space-4);
+      }
+
+      .contact-hero p {
+        font-size: var(--text-lg);
+        color: var(--color-smoke);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-16);
+        padding: var(--space-16) var(--space-8);
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .contact-form {
+        background: rgba(212, 175, 55, 0.05);
+        padding: var(--space-12);
+        border-radius: var(--rounded-lg);
+        border: 1px solid rgba(212, 175, 55, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: var(--space-6);
+      }
+
+      .form-label {
+        display: block;
+        color: var(--color-gold);
+        font-weight: 600;
+        margin-bottom: var(--space-2);
+        font-size: var(--text-sm);
+      }
+
+      .form-input,
+      .form-textarea {
+        width: 100%;
+        padding: var(--space-4);
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: var(--rounded-md);
+        color: var(--color-text);
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        transition: all var(--transition-smooth);
+      }
+
+      .form-input:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--color-gold);
+        background: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+      }
+
+      .form-grid .form-group {
+        margin-bottom: var(--space-4);
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: var(--space-4);
+        background: var(--color-gold);
+        color: var(--color-obsidian);
+        border: none;
+        border-radius: var(--rounded-lg);
+        font-family: var(--font-display);
+        font-size: var(--text-base);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-smooth);
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
+
+      .btn-submit:active {
+        transform: translateY(0);
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-8);
+      }
+
+      .info-card {
+        background: rgba(212, 175, 55, 0.08);
+        padding: var(--space-8);
+        border-radius: var(--rounded-lg);
+        border-left: 3px solid var(--color-gold);
+      }
+
+      .info-icon {
+        font-size: 32px;
+        margin-bottom: var(--space-4);
+      }
+
+      .info-title {
+        font-family: var(--font-display);
+        color: var(--color-gold);
+        font-size: var(--text-lg);
+        margin-bottom: var(--space-2);
+      }
+
+      .info-content {
+        color: var(--color-text);
+        line-height: 1.8;
+        font-size: var(--text-base);
+      }
+
+      .info-content a {
+        color: var(--color-gold);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .info-content a:hover {
+        text-decoration: underline;
+      }
+
+      .faq-section {
+        padding: var(--space-16) var(--space-8);
+        border-top: var(--border-smoke);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-8);
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: rgba(212, 175, 55, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        border-radius: var(--rounded-lg);
+        overflow: hidden;
+      }
+
+      .faq-header {
+        background: rgba(212, 175, 55, 0.1);
+        padding: var(--space-6);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .faq-header:hover {
+        background: rgba(212, 175, 55, 0.15);
+      }
+
+      .faq-title {
+        font-family: var(--font-display);
+        color: var(--color-gold);
+        font-size: var(--text-base);
+        margin: 0;
+      }
+
+      .faq-icon {
+        color: var(--color-gold);
+        transition: transform 0.3s ease;
+      }
+
+      .faq-icon.open {
+        transform: rotate(180deg);
+      }
+
+      .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0 var(--space-6);
+      }
+
+      .faq-content.open {
+        max-height: 300px;
+        padding: var(--space-6);
+      }
+
+      .faq-text {
+        color: var(--color-text);
+        line-height: 1.8;
+        font-size: var(--text-sm);
+      }
+
+      @media (max-width: 1024px) {
+        .contact-container {
+          grid-template-columns: 1fr;
+        }
+
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .contact-hero h1 {
+          font-size: var(--text-3xl);
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-container {
+          padding: var(--space-8) var(--space-4);
+        }
+
+        .faq-section {
+          padding: var(--space-8) var(--space-4);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-content">
+          <a href="../index.html" class="logo">
+            <span class="logo-text">CHEDOUDOUE</span>
+          </a>
+          <div class="nav-links">
+            <a href="../index.html" class="nav-link">Accueil</a>
+            <a href="shop.html" class="nav-link">Boutique</a>
+            <a href="about.html" class="nav-link">La Maison</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+          </div>
+          <div class="nav-actions">
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Rechercher..."
+              />
+              <span class="search-icon">🔍</span>
+            </div>
+            <a href="cart.html" class="cart-icon">
+              🛍️ <span class="cart-count">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+      <h1>Nous Contacter</h1>
+      <p>Vous avez des questions ? Notre équipe d'experts est prête à vous aider avec passion et professionnalisme.</p>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="contact-container">
+      <!-- Form -->
+      <form class="contact-form" id="contact-form">
+        <h2 style="font-family: var(--font-display); color: var(--color-gold); margin-bottom: var(--space-8);">Envoyez-nous un Message</h2>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Nom Complet *</label>
+            <input
+              type="text"
+              class="form-input"
+              name="name"
+              required
+              placeholder="Votre nom"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email *</label>
+            <input
+              type="email"
+              class="form-input"
+              name="email"
+              required
+              placeholder="votre@email.com"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Téléphone (Optionnel)</label>
+          <input
+            type="tel"
+            class="form-input"
+            name="phone"
+            placeholder="+33 1 23 45 67 89"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Sujet *</label>
+          <select class="form-input" name="subject" required style="cursor: pointer;">
+            <option value="">-- Sélectionnez un sujet --</option>
+            <option value="commande">Commande & Livraison</option>
+            <option value="produit">Question Produit</option>
+            <option value="retour">Retour & Échange</option>
+            <option value="partenariat">Partenariat</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Message *</label>
+          <textarea
+            class="form-textarea"
+            name="message"
+            required
+            placeholder="Décrivez votre demande..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Envoyer le Message</button>
+      </form>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <h3 class="info-title">Adresse</h3>
+          <p class="info-content">
+            42 Rue Rivoli<br />
+            75004 Paris, France<br />
+            <br />
+            <strong>Boutique Physique Ouverte</strong><br />
+            Lun - Sam: 10h - 19h<br />
+            Dim: 12h - 18h
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📞</div>
+          <h3 class="info-title">Support Client</h3>
+          <p class="info-content">
+            Téléphone: <a href="tel:+33142345678">+33 1 42 34 56 78</a><br />
+            Email: <a href="mailto:contact@chedoudoue.fr">contact@chedoudoue.fr</a><br />
+            <br />
+            <strong>Temps de Réponse:</strong><br />
+            24h en jours ouvrables
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">🚚</div>
+          <h3 class="info-title">Livraison & Retours</h3>
+          <p class="info-content">
+            Livraison gratuite à partir de 100€<br />
+            Retours gratuits sous 30 jours<br />
+            Expédition le jour même (avant 14h)<br />
+            Suivi en temps réel includef
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">💬</div>
+          <h3 class="info-title">Réseaux Sociaux</h3>
+          <p class="info-content">
+            <a href="https://instagram.com" target="_blank">Instagram</a> · 
+            <a href="https://facebook.com" target="_blank">Facebook</a> · 
+            <a href="https://tiktok.com" target="_blank">TikTok</a> · 
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--color-gold); text-align: center; margin-bottom: var(--space-12);">
+        Questions Fréquemment Posées
+      </h2>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <h3 class="faq-title">Quels sont les frais de livraison ?</h3>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p class="faq-text">
+              La livraison est gratuite pour les commandes supérieures à 100€. Pour les commandes inférieures, des frais de 10€ s'appliquent. La livraison standard prend 3-5 jours ouvrables.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <h3 class="faq-title">Puis-je retourner un produit ?</h3>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p class="faq-text">
+              Oui, vous avez 30 jours pour retourner un produit. Le retour est gratuit et nous remboursons votre achat dans les 7 jours suivant la réception. Les produits doivent être dans leur état d'origine.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <h3 class="faq-title">Comment puis-je suivre ma commande ?</h3>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p class="faq-text">
+              Un numéro de suivi vous est envoyé par email dès que votre commande est expédiée. Vous pouvez le suivre en temps réel sur notre site ou via le lien fourni dans votre email de confirmation.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <h3 class="faq-title">Les produits sont-ils authentiques ?</h3>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p class="faq-text">
+              Absolument. CHEDOUDOUE n'utilise que des matériaux authentiques et de qualité premium. Chaque produit est certifié et authentifié. Nous sommes fiers de la qualité de nos créations.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <h3 class="faq-title">Acceptez-vous les paiements internationaux ?</h3>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p class="faq-text">
+              Oui, nous acceptons les paiements depuis plus de 100 pays. Nous gérons les conversions de devises et les taxes d'importation selon votre localisation. Livraison mondiale disponible.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <h3 class="faq-title">Y a-t-il des personnalisations possibles ?</h3>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p class="faq-text">
+              Certains produits peuvent être personnalisés, comme les bijoux gravables. Contactez notre équipe pour discuter des options de personnalisation disponibles pour votre produit spécifique.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <h3 class="faq-title">Comment entretenir mes achats ?</h3>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p class="faq-text">
+              Chaque produit est livré avec un guide d'entretien détaillé. En général, les bijoux doivent être nettoyés régulièrement, les parfums conservés à l'abri de la lumière, et les vêtements traités avec soin. Consultez l'emballage pour les instructions spécifiques.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <h3 class="faq-title">Proposez-vous un programme de fidélité ?</h3>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p class="faq-text">
+              Oui, nos clients VIP bénéficient d'accès anticipé aux collections, de réductions exclusives, et d'invitations aux événements spéciaux. Inscrivez-vous à notre newsletter pour plus de détails.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <h3 class="footer-title">CHEDOUDOUE</h3>
+            <p style="color: var(--color-smoke); margin-bottom: var(--space-4);">
+              Luxe français au cœur de chaque création
+            </p>
+          </div>
+          <div class="footer-section">
+            <h4 style="color: var(--color-gold); margin-bottom: var(--space-4);">
+              Boutique
+            </h4>
+            <ul>
+              <li><a href="shop.html">Tous les Produits</a></li>
+              <li><a href="shop.html">Nouveautés</a></li>
+              <li><a href="shop.html">Best-sellers</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 style="color: var(--color-gold); margin-bottom: var(--space-4);">
+              Support
+            </h4>
+            <ul>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Livraison</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 style="color: var(--color-gold); margin-bottom: var(--space-4);">
+              Entreprise
+            </h4>
+            <ul>
+              <li><a href="about.html">À Propos</a></li>
+              <li><a href="#">Conditions</a></li>
+              <li><a href="#">Confidentialité</a></li>
+            </ul>
+          </div>
+        </div>
+        <div style="border-top: var(--border-smoke); padding-top: var(--space-6); margin-top: var(--space-8); text-align: center; color: var(--color-smoke);">
+          <p>&copy; 2026 CHEDOUDOUE. Tous droits réservés. ✨</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/cart.js"></script>
+    <script>
+      // Toggle FAQ
+      function toggleFAQ(header) {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector('.faq-icon');
+
+        // Close other items
+        document.querySelectorAll('.faq-content').forEach((item) => {
+          if (item !== content) {
+            item.classList.remove('open');
+            item.previousElementSibling.querySelector('.faq-icon').classList.remove('open');
+          }
+        });
+
+        // Toggle current item
+        content.classList.toggle('open');
+        icon.classList.toggle('open');
+      }
+
+      // Handle form submission
+      document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.querySelector('input[name="name"]').value;
+        const email = document.querySelector('input[name="email"]').value;
+        const subject = document.querySelector('select[name="subject"]').value;
+
+        // Show success notification
+        showNotification(
+          `Merci ${name}! Votre message a été envoyé avec succès. Nous vous répondrons dans les 24h.`,
+          'success'
+        );
+
+        // Reset form
+        document.getElementById('contact-form').reset();
+      });
+
+      // Show notification
+      function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type} fade-in`;
+        notification.textContent = message;
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+        notification.style.zIndex = '9999';
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.classList.add('fade-out');
+          setTimeout(() => notification.remove(), 300);
+        }, 4000);
+      }
+
+      // Update cart count
+      function updateCartCount() {
+        const count = cart.getCartItems().length;
+        document.querySelector('.cart-count').textContent = count;
+      }
+
+      window.addEventListener('load', updateCartCount);
+    </script>
+  </body>
+</html>

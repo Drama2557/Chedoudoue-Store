@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Maison | CHEDOUDOUE</title>
+    <link rel="stylesheet" href="../assets/css/theme.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/premium.css" />
+    <link rel="stylesheet" href="../assets/css/animations.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .about-hero {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(212, 175, 55, 0.1) 100%);
+        padding: var(--space-24) var(--space-8);
+        text-align: center;
+        border-bottom: var(--border-smoke);
+      }
+
+      .about-hero h1 {
+        font-family: var(--font-display);
+        font-size: var(--text-5xl);
+        color: var(--color-gold);
+        margin-bottom: var(--space-4);
+      }
+
+      .about-hero p {
+        font-size: var(--text-lg);
+        color: var(--color-smoke);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .about-section {
+        padding: var(--space-16) var(--space-8);
+        border-bottom: var(--border-smoke);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-12);
+        align-items: center;
+      }
+
+      .about-content h2 {
+        font-family: var(--font-display);
+        font-size: var(--text-3xl);
+        color: var(--color-gold);
+        margin-bottom: var(--space-6);
+      }
+
+      .about-content p {
+        color: var(--color-text);
+        line-height: 1.9;
+        margin-bottom: var(--space-4);
+        font-size: var(--text-base);
+      }
+
+      .about-image {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-radius: var(--rounded-lg);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-8);
+        margin-top: var(--space-8);
+      }
+
+      .value-card {
+        background: rgba(212, 175, 55, 0.08);
+        padding: var(--space-8);
+        border-radius: var(--rounded-lg);
+        border-left: 3px solid var(--color-gold);
+        text-align: center;
+      }
+
+      .value-icon {
+        font-size: 48px;
+        margin-bottom: var(--space-4);
+      }
+
+      .value-title {
+        font-family: var(--font-display);
+        color: var(--color-gold);
+        font-size: var(--text-lg);
+        margin-bottom: var(--space-2);
+      }
+
+      .value-description {
+        color: var(--color-smoke);
+        font-size: var(--text-sm);
+        line-height: 1.6;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-8);
+      }
+
+      .testimonial-card {
+        background: rgba(212, 175, 55, 0.05);
+        padding: var(--space-8);
+        border-radius: var(--rounded-lg);
+        border: 1px solid rgba(212, 175, 55, 0.1);
+      }
+
+      .testimonial-text {
+        color: var(--color-text);
+        font-style: italic;
+        margin-bottom: var(--space-4);
+        line-height: 1.8;
+        font-size: var(--text-sm);
+      }
+
+      .testimonial-author {
+        color: var(--color-gold);
+        font-weight: 600;
+        font-size: var(--text-sm);
+      }
+
+      .testimonial-title {
+        color: var(--color-smoke);
+        font-size: var(--text-xs);
+      }
+
+      .timeline {
+        position: relative;
+        padding: var(--space-8) 0;
+      }
+
+      .timeline-item {
+        margin-bottom: var(--space-8);
+        padding-left: var(--space-12);
+        position: relative;
+      }
+
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 20px;
+        height: 20px;
+        background: var(--color-gold);
+        border-radius: 50%;
+        border: 3px solid var(--color-obsidian);
+      }
+
+      .timeline-item::after {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 26px;
+        width: 4px;
+        height: calc(100% + 20px);
+        background: rgba(212, 175, 55, 0.2);
+      }
+
+      .timeline-item:last-child::after {
+        display: none;
+      }
+
+      .timeline-year {
+        font-family: var(--font-display);
+        color: var(--color-gold);
+        font-size: var(--text-lg);
+        margin-bottom: var(--space-2);
+      }
+
+      .timeline-text {
+        color: var(--color-text);
+        font-size: var(--text-base);
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-8);
+      }
+
+      .team-member {
+        text-align: center;
+      }
+
+      .team-image {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: var(--rounded-lg);
+        margin-bottom: var(--space-4);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+      }
+
+      .team-name {
+        font-family: var(--font-display);
+        color: var(--color-gold);
+        font-size: var(--text-lg);
+        margin-bottom: var(--space-1);
+      }
+
+      .team-role {
+        color: var(--color-smoke);
+        font-size: var(--text-sm);
+      }
+
+      @media (max-width: 1024px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .values-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .testimonials-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .team-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .about-section {
+          padding: var(--space-8) var(--space-4);
+        }
+
+        .about-hero h1 {
+          font-size: var(--text-3xl);
+        }
+
+        .values-grid,
+        .testimonials-grid,
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-content">
+          <a href="../index.html" class="logo">
+            <span class="logo-text">CHEDOUDOUE</span>
+          </a>
+          <div class="nav-links">
+            <a href="../index.html" class="nav-link">Accueil</a>
+            <a href="shop.html" class="nav-link">Boutique</a>
+            <a href="about.html" class="nav-link active">La Maison</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </div>
+          <div class="nav-actions">
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Rechercher..."
+              />
+              <span class="search-icon">🔍</span>
+            </div>
+            <a href="cart.html" class="cart-icon">
+              🛍️ <span class="cart-count">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <h1>La Maison CHEDOUDOUE</h1>
+      <p>Depuis 2016, nous créons des pièces d'exception qui racontent une histoire d'élégance, de passion et de perfectionnisme artisanal.</p>
+    </section>
+
+    <!-- Our Story -->
+    <section class="about-section container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h2>Notre Histoire</h2>
+          <p>
+            Fondée en 2016 par une visionnaire des arts du luxe, CHEDOUDOUE est née d'une passion simple mais profonde : créer des pièces
+            qui transcendent le temps et les tendances.
+          </p>
+          <p>
+            Chaque création raconte une histoire. Que ce soit un collier scintillant, un parfum envoûtant ou une paire de sandales
+            parfaitement ajustée, nous portons attention à chaque détail, chaque matière, chaque nuance.
+          </p>
+          <p>
+            Notre atelier parisien abrite des artisans de renommée mondiale. Nos sourçages sont rigoureux, nos processus de fabrication
+            hérités de siècles de tradition. Nous ne faisons pas de compromis sur la qualité.
+          </p>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1495195134817-aeb325ef3c4d?q=80&w=1000"
+          alt="Atelier CHEDOUDOUE"
+          class="about-image"
+        />
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="about-section container">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--color-gold); text-align: center; margin-bottom: var(--space-12);">Nos Valeurs</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">✨</div>
+          <h3 class="value-title">Excellence</h3>
+          <p class="value-description">
+            Chaque produit reflète notre engagement envers la perfection. Aucun détail n'est trop petit, aucune qualité non vérifiée.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🎨</div>
+          <h3 class="value-title">Créativité</h3>
+          <p class="value-description">
+            Nous repoussons les limites du design. Nos collections fusionnent tradition et modernité avec audace et grâce.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🌍</div>
+          <h3 class="value-title">Durabilité</h3>
+          <p class="value-description">
+            Responsables envers notre planète, nous utilisons des matériaux éthiques et des processus respectueux de l'environnement.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heritage Timeline -->
+    <section class="about-section container">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--color-gold); margin-bottom: var(--space-12);">Notre Évolution</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2016</div>
+          <p class="timeline-text">Fondation de CHEDOUDOUE à Paris. Lancement de la première collection de bijoux de luxe.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2018</div>
+          <p class="timeline-text">Expansion vers les parfums unisexes et les produits de beauté premium. Reconnaissance internationale.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <p class="timeline-text">Lancement de la collection de mode et des accessoires de voyage. Ouverture du flagship store à Paris.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <p class="timeline-text">Partenariats stratégiques avec les plus grandes maisons de luxe. Présence dans 50 pays.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2026</div>
+          <p class="timeline-text">Lancement du e-commerce premium. Nouvelles collections exclusives et innovations artisanales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="about-section container">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--color-gold); text-align: center; margin-bottom: var(--space-12);">Ce que nos clients disent</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "CHEDOUDOUE m'a permis de découvrir une véritable culture du luxe. Chaque produit est une œuvre d'art."
+          </p>
+          <p class="testimonial-author">Sophie Leclerc</p>
+          <p class="testimonial-title">Éditrice de Mode</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "La qualité est incomparable. J'ai investi dans une valise CHEDOUDOUE et elle voyage avec moi depuis trois ans."
+          </p>
+          <p class="testimonial-author">Marc Dubois</p>
+          <p class="testimonial-title">Voyageur International</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "Le parfum 'Essence Nuit Éternelle' est devenu une partie de mon identité. C'est pure magie."
+          </p>
+          <p class="testimonial-author">Amélie Laurent</p>
+          <p class="testimonial-title">Créatrice de Contenu</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="about-section container">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--color-gold); text-align: center; margin-bottom: var(--space-12);">Notre Équipe</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400"
+            alt="Fondatrice"
+            class="team-image"
+          />
+          <p class="team-name">Élise Fontaine</p>
+          <p class="team-role">Fondatrice & Creative Director</p>
+        </div>
+        <div class="team-member">
+          <img
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400"
+            alt="Directeur Technique"
+            class="team-image"
+          />
+          <p class="team-name">Pierre Moreau</p>
+          <p class="team-role">Directeur Technique</p>
+        </div>
+        <div class="team-member">
+          <img
+            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400"
+            alt="Responsable Design"
+            class="team-image"
+          />
+          <p class="team-name">Isabelle Roux</p>
+          <p class="team-role">Head of Design</p>
+        </div>
+        <div class="team-member">
+          <img
+            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400"
+            alt="Directeur Commercial"
+            class="team-image"
+          />
+          <p class="team-name">Jean-Baptiste Arnould</p>
+          <p class="team-role">Directeur Commercial</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%); padding: var(--space-16) var(--space-8); text-align: center;">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--color-gold); margin-bottom: var(--space-6);">
+        Rejoignez l'Univers CHEDOUDOUE
+      </h2>
+      <p style="font-size: var(--text-lg); color: var(--color-text); margin-bottom: var(--space-8);">
+        Découvrez notre collection exclusive et vivez l'expérience du luxe authentique
+      </p>
+      <a href="shop.html" style="display: inline-block; background: var(--color-gold); color: var(--color-obsidian); padding: var(--space-4) var(--space-12); border-radius: var(--rounded-lg); text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+        Découvrir la Boutique
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <h3 class="footer-title">CHEDOUDOUE</h3>
+            <p style="color: var(--color-smoke); margin-bottom: var(--space-4);">
+              Luxe français au cœur de chaque création
+            </p>
+          </div>
+          <div class="footer-section">
+            <h4 style="color: var(--color-gold); margin-bottom: var(--space-4);">
+              Boutique
+            </h4>
+            <ul>
+              <li><a href="shop.html">Tous les Produits</a></li>
+              <li><a href="shop.html">Nouveautés</a></li>
+              <li><a href="shop.html">Best-sellers</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 style="color: var(--color-gold); margin-bottom: var(--space-4);">
+              Support
+            </h4>
+            <ul>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Livraison</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 style="color: var(--color-gold); margin-bottom: var(--space-4);">
+              Entreprise
+            </h4>
+            <ul>
+              <li><a href="about.html">À Propos</a></li>
+              <li><a href="#">Conditions</a></li>
+              <li><a href="#">Confidentialité</a></li>
+            </ul>
+          </div>
+        </div>
+        <div style="border-top: var(--border-smoke); padding-top: var(--space-6); margin-top: var(--space-8); text-align: center; color: var(--color-smoke);">
+          <p>&copy; 2026 CHEDOUDOUE. Tous droits réservés. ✨</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/cart.js"></script>
+    <script>
+      // Update cart count
+      function updateCartCount() {
+        const count = cart.getCartItems().length;
+        document.querySelector('.cart-count').textContent = count;
+      }
+
+      window.addEventListener('load', updateCartCount);
+    </script>
+  </body>
+</html>

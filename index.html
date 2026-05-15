@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHEDOUDOUE - Maison de Luxe Française | Bijoux, Parfums & Mode Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/theme.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/premium.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <style>
+        /* ===== HERO CINÉMATIQUE ===== */
+        .hero-cinema {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(212,175,55,0.1) 100%);
+            z-index: 1;
+        }
+
+        .hero-image-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: var(--space-8);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+            letter-spacing: 4px;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: fadeInUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-editorial);
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            margin-bottom: var(--space-8);
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 2px;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            animation: fadeInUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+            max-width: 600px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s both;
+        }
+
+        .btn-primary-hero {
+            padding: 16px 48px;
+            background: #D4AF37;
+            color: #0a0a0a;
+            border: 2px solid #D4AF37;
+            border-radius: 0;
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transition: left 0.4s;
+        }
+
+        .btn-primary-hero:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.3);
+        }
+
+        .btn-secondary-hero {
+            padding: 16px 48px;
+            background: transparent;
+            color: #D4AF37;
+            border: 2px solid #D4AF37;
+            border-radius: 0;
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+
+        .btn-secondary-hero:hover {
+            background: #D4AF37;
+            color: #0a0a0a;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.3);
+        }
+
+        /* ===== NAVIGATION STICKY ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.7);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: #D4AF37;
+            letter-spacing: 3px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(212,175,55,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-6);
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: var(--font-body);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f5f5f0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #D4AF37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #D4AF37;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: var(--space-4);
+            align-items: center;
+        }
+
+        .nav-cart {
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            color: #D4AF37;
+        }
+
+        .nav-cart:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #D4AF37;
+            color: #0a0a0a;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* ===== SECTIONS PREMIUM ===== */
+        .section-padding {
+            padding: var(--space-20) var(--space-8);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #D4AF37;
+            text-align: center;
+            margin-bottom: var(--space-12);
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: var(--space-6);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: #D4AF37;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-editorial);
+            font-size: 18px;
+            color: rgba(245,245,240,0.8);
+            text-align: center;
+            margin-bottom: var(--space-12);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== PRODUITS EN GRILLE ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-8);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            border-color: #D4AF37;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(212,175,55,0.2);
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #D4AF37;
+            color: #0a0a0a;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .product-info {
+            padding: var(--space-6);
+            text-align: center;
+        }
+
+        .product-name {
+            font-family: var(--font-display);
+            font-size: 16px;
+            color: #D4AF37;
+            margin-bottom: var(--space-2);
+            transition: all 0.3s ease;
+        }
+
+        .product-price {
+            font-family: var(--font-body);
+            font-size: 18px;
+            font-weight: 600;
+            color: #f5f5f0;
+            margin-bottom: var(--space-3);
+        }
+
+        .product-price-old {
+            text-decoration: line-through;
+            color: rgba(245,245,240,0.5);
+            font-size: 14px;
+            margin-left: var(--space-2);
+        }
+
+        .product-btn {
+            width: 100%;
+            padding: 12px;
+            background: #D4AF37;
+            color: #0a0a0a;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: var(--space-3);
+        }
+
+        .product-btn:hover {
+            background: #f5f5f0;
+            color: #0a0a0a;
+        }
+
+        /* ===== COLLECTIONS SHOWCASE ===== */
+        .collection-hero {
+            position: relative;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-12);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .collection-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(212,175,55,0.1) 100%);
+            z-index: 1;
+        }
+
+        .collection-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .collection-name {
+            font-family: var(--font-display);
+            font-size: 48px;
+            color: #D4AF37;
+            margin-bottom: var(--space-4);
+            letter-spacing: 3px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0f0f0f;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            padding: var(--space-12) var(--space-8);
+            margin-top: var(--space-20);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-8);
+        }
+
+        .footer-section h4 {
+            font-family: var(--font-display);
+            color: #D4AF37;
+            margin-bottom: var(--space-4);
+            letter-spacing: 2px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(245,245,240,0.7);
+            text-decoration: none;
+            margin-bottom: var(--space-2);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #D4AF37;
+            margin-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(212,175,55,0.1);
+            padding-top: var(--space-6);
+            color: rgba(245,245,240,0.5);
+            font-size: 13px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-ctas {
+                gap: var(--space-3);
+            }
+
+            .btn-primary-hero,
+            .btn-secondary-hero {
+                padding: 12px 32px;
+                font-size: 12px;
+            }
+
+            .nav-links {
+                gap: var(--space-3);
+            }
+
+            .nav-link {
+                font-size: 11px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: var(--space-4);
+            }
+
+            .section-padding {
+                padding: var(--space-12) var(--space-4);
+            }
+
+            .collection-hero {
+                height: 250px;
+            }
+
+            .collection-name {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.5rem;
+                margin-bottom: var(--space-2);
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: var(--space-4);
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 var(--space-4);
+            }
+
+            .btn-primary-hero,
+            .btn-secondary-hero {
+                width: 100%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body style="background: #0a0a0a; color: #f5f5f0; overflow-x: hidden;">
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">CHEDOUDOUE</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="pages/shop.html" class="nav-link">Boutique</a>
+                <a href="#collections" class="nav-link">Collections</a>
+                <a href="pages/about.html" class="nav-link">La Maison</a>
+                <a href="pages/contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="pages/cart.html" class="nav-cart" title="Panier">
+                    🛍️
+                    <span class="cart-badge" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO CINÉMATIQUE ===== -->
+    <section class="hero-cinema" id="hero">
+        <div class="hero-image-slider" id="hero-slider"></div>
+        <div class="hero-video-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">CHEDOUDOUE</h1>
+            <p class="hero-subtitle">La Splendeur de l'Élégance Intemporelle</p>
+            <div class="hero-ctas">
+                <a href="pages/shop.html" class="btn-primary-hero">Découvrir la Collection</a>
+                <a href="#collections" class="btn-secondary-hero">Explorer les Catégories</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COLLECTIONS PRINCIPALES ===== -->
+    <section class="section-padding" id="collections" style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(10,10,10,1) 100%);">
+        <h2 class="section-title">Les Collections Phares</h2>
+        <p class="section-subtitle">Plongez dans notre univers de luxe et de prestige</p>
+
+        <div class="products-grid" id="featured-products">
+            <!-- Produits dynamiques chargés ici -->
+        </div>
+    </section>
+
+    <!-- ===== CATÉGORIES VITRINE ===== -->
+    <section class="section-padding" style="background: #0a0a0a;">
+        <h2 class="section-title">Nos Univers de Luxe</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-8); max-width: 1400px; margin: 0 auto;">
+            <!-- Bijoux -->
+            <div class="collection-hero" style="background-image: url('assets/images/bijoux/bijou%20(1).jpg');">
+                <div class="collection-content">
+                    <div class="collection-name">Bijoux</div>
+                </div>
+            </div>
+
+            <!-- Parfums -->
+            <div class="collection-hero" style="background-image: url('assets/images/parfums-unisex/parfum%20(1).jpg');">
+                <div class="collection-content">
+                    <div class="collection-name">Parfums</div>
+                </div>
+            </div>
+
+            <!-- Mode -->
+            <div class="collection-hero" style="background-image: url('assets/images/vetements-femme/vetements-femme%20(1).jpg');">
+                <div class="collection-content">
+                    <div class="collection-name">Mode</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BESTSELLERS ===== -->
+    <section class="section-padding" style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(10,10,10,1) 100%);">
+        <h2 class="section-title">Les Best-Sellers</h2>
+        <p class="section-subtitle">Les pièces les plus aimées de nos clients</p>
+
+        <div class="products-grid" id="bestsellers">
+            <!-- Produits best-sellers chargés ici -->
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="section-padding" style="background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(0,0,0,0.5) 100%); border: 1px solid rgba(212,175,55,0.2);">
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <h2 class="section-title" style="margin-bottom: var(--space-4);">Restez Connecté au Luxe</h2>
+            <p class="section-subtitle" style="margin-bottom: var(--space-8);">Inscrivez-vous à notre newsletter pour les exclusivités et les lancements privés</p>
+            <form style="display: flex; gap: var(--space-2);">
+                <input type="email" placeholder="votre@email.com" required style="flex: 1; padding: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(212,175,55,0.3); color: #f5f5f0; font-family: var(--font-body);">
+                <button type="submit" style="padding: 12px 32px; background: #D4AF37; color: #0a0a0a; border: none; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                    S'inscrire
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>CHEDOUDOUE</h4>
+                <p style="color: rgba(245,245,240,0.6); font-size: 14px;">La splendeur de l'élégance intemporelle. Depuis 2016, nous créons les plus beaux objets de luxe.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Boutique</h4>
+                <a href="pages/shop.html">Tous les Produits</a>
+                <a href="pages/shop.html?category=bijoux">Bijoux</a>
+                <a href="pages/shop.html?category=parfums">Parfums</a>
+                <a href="pages/shop.html?category=mode">Mode</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="pages/contact.html">Contact</a>
+                <a href="#">FAQ</a>
+                <a href="#">Livraison & Retours</a>
+                <a href="#">Conditions de Vente</a>
+            </div>
+            <div class="footer-section">
+                <h4>Entreprise</h4>
+                <a href="pages/about.html">À Propos</a>
+                <a href="#">Politique de Confidentialité</a>
+                <a href="#">Mentions Légales</a>
+                <a href="#">Carrières</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CHEDOUDOUE. Tous droits réservés. <span style="color: #D4AF37;">✨</span></p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script>
+        // ===== HERO IMAGE SLIDER =====
+        const heroImages = [
+            'assets/images/bijoux/bijou%20(5).jpg',
+            'assets/images/parfums-unisex/parfum%20(9).jpg',
+            'assets/images/vetements-femme/vetements-femme%20(8).jpg',
+            'assets/images/valises-fille/valise%20(1).jpg',
+            'assets/images/sandales-unisex/sandale%20(2).jpg'
+        ];
+
+        let heroIndex = 0;
+        const heroSlider = document.getElementById('hero-slider');
+
+        function initHeroSlider() {
+            heroImages.forEach((img, index) => {
+                const slide = document.createElement('div');
+                slide.className = `hero-slide ${index === 0 ? 'active' : ''}`;
+                slide.style.backgroundImage = `url('${img}')`;
+                heroSlider.appendChild(slide);
+            });
+
+            setInterval(() => {
+                const slides = document.querySelectorAll('.hero-slide');
+                slides[heroIndex].classList.remove('active');
+                heroIndex = (heroIndex + 1) % slides.length;
+                slides[heroIndex].classList.add('active');
+            }, 5000);
+        }
+
+        // ===== NAVBAR STICKY EFFECT =====
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== CHARGER LES PRODUITS =====
+        async function loadHomepage() {
+            await loadProducts();
+
+            // Produits vedettes
+            const featured = getFeaturedProducts(6);
+            const featuredHtml = featured.map(p => createProductCardHTML(p)).join('');
+            document.getElementById('featured-products').innerHTML = featuredHtml;
+
+            // Best-sellers
+            const bestsellers = products.filter(p => p.bestseller).slice(0, 6);
+            const bestsellersHtml = bestsellers.map(p => createProductCardHTML(p)).join('');
+            document.getElementById('bestsellers').innerHTML = bestsellersHtml;
+
+            // Boutons produit
+            attachProductButtons();
+
+            // Mettre à jour le panier
+            updateCartCount();
+        }
+
+        function createProductCardHTML(product) {
+            const categoryFolder = getCategoryFolder(product.category);
+            const discount = product.original_price ? 
+                Math.round(((product.original_price - product.price) / product.original_price) * 100) : 0;
+
+            return `
+                <div class="product-card" onclick="window.location.href='pages/produits.html?id=${product.id}'">
+                    <div class="product-image">
+                        <img src="assets/images/${categoryFolder}/${product.image}" alt="${product.name}" loading="lazy">
+                        ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ''}
+                        ${product.new ? `<div class="product-badge" style="left: 12px;">NOUVEAU</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">
+                            ${product.price.toFixed(0)}€
+                            ${product.original_price ? `<span class="product-price-old">${product.original_price.toFixed(0)}€</span>` : ''}
+                        </div>
+                        <button class="product-btn" data-id="${product.id}" onclick="event.stopPropagation(); addProductToCart(this)">
+                            Ajouter
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function attachProductButtons() {
+            document.querySelectorAll('.product-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.getAttribute('data-id');
+                    const product = getProductById(id);
+                    if (product) {
+                        cart.addItem(product);
+                        updateCartCount();
+                        showNotification(`${product.name} ajouté au panier`);
+                    }
+                });
+            });
+        }
+
+        function updateCartCount() {
+            const count = cart.getCartItems().length;
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #D4AF37;
+                color: #0a0a0a;
+                padding: 12px 24px;
+                border-radius: 4px;
+                font-weight: 600;
+                z-index: 9999;
+                animation: slideInLeft 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            `;
+            notif.textContent = message;
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 3000);
+        }
+
+        // ===== INIT =====
+        window.addEventListener('load', () => {
+            initHeroSlider();
+            loadHomepage();
+        });
+    </script>
+</body>
+</html>

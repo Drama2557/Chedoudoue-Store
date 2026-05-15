@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panier | Chedoudoue - Maison de Prestige</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/theme.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/premium.css" />
+    <link rel="stylesheet" href="../assets/css/animations.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+
+    <style>
+      .cart-layout {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: var(--space-12);
+        margin-bottom: var(--space-16);
+      }
+
+      .cart-items-section {
+        background: var(--glass-bg);
+        border: var(--border-glass);
+        backdrop-filter: var(--glass-blur);
+        padding: var(--space-8);
+        border-radius: var(--radius-lg);
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: 120px 1fr auto auto auto;
+        gap: var(--space-6);
+        align-items: center;
+        padding: var(--space-6);
+        border-bottom: var(--border-glass);
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .cart-item-image {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: var(--radius-md);
+      }
+
+      .cart-item-details h4 {
+        color: var(--color-white);
+        font-family: var(--font-display);
+        font-size: var(--fs-h4);
+        margin-bottom: var(--space-2);
+      }
+
+      .cart-item-category {
+        color: var(--color-gold);
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-wider);
+        margin-bottom: var(--space-2);
+      }
+
+      .cart-item-price {
+        color: var(--color-silver);
+        font-size: var(--fs-base);
+      }
+
+      .cart-item-quantity {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        background: var(--color-graphite);
+        padding: var(--space-2);
+        border-radius: var(--radius-sm);
+      }
+
+      .qty-btn {
+        background: none;
+        border: none;
+        color: var(--color-gold);
+        font-size: var(--fs-h4);
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color var(--transition-fast);
+      }
+
+      .qty-btn:hover {
+        color: var(--color-gold-light);
+      }
+
+      .qty-value {
+        color: var(--color-white);
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .cart-item-total {
+        color: var(--color-gold);
+        font-weight: 700;
+        font-size: var(--fs-h4);
+        min-width: 100px;
+        text-align: right;
+      }
+
+      .cart-item-remove {
+        background: none;
+        border: none;
+        color: var(--color-silver);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color var(--transition-fast);
+        padding: var(--space-2);
+      }
+
+      .cart-item-remove:hover {
+        color: #ff6b6b;
+      }
+
+      .empty-cart {
+        text-align: center;
+        padding: var(--space-12);
+      }
+
+      .empty-cart h3 {
+        color: var(--color-white);
+        font-family: var(--font-display);
+        font-size: var(--fs-h2);
+        margin-bottom: var(--space-4);
+      }
+
+      .empty-cart p {
+        color: var(--color-silver);
+        margin-bottom: var(--space-6);
+      }
+
+      .cart-summary {
+        background: var(--glass-bg);
+        border: var(--border-glass);
+        backdrop-filter: var(--glass-blur);
+        padding: var(--space-8);
+        border-radius: var(--radius-lg);
+        position: sticky;
+        top: 120px;
+        height: fit-content;
+      }
+
+      .cart-summary h3 {
+        color: var(--color-white);
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        margin-bottom: var(--space-6);
+      }
+
+      .summary-line {
+        display: flex;
+        justify-content: space-between;
+        color: var(--color-silver);
+        margin-bottom: var(--space-3);
+        padding-bottom: var(--space-3);
+        border-bottom: var(--border-glass);
+      }
+
+      .summary-line:last-of-type {
+        border-bottom: var(--border-thick);
+      }
+
+      .summary-total {
+        color: var(--color-gold);
+        font-size: var(--fs-h3);
+        font-weight: 700;
+        margin-bottom: var(--space-6);
+      }
+
+      .summary-savings {
+        color: #4ade80 !important;
+      }
+
+      .btn-gold,
+      .btn-outline {
+        display: block;
+        width: 100%;
+        padding: var(--space-4) var(--space-6);
+        text-align: center;
+        border: none;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: var(--fs-xs);
+        letter-spacing: var(--ls-wider);
+        margin-bottom: var(--space-3);
+        transition: all var(--transition-fast);
+      }
+
+      .btn-gold {
+        background: var(--gradient-gold);
+        color: var(--color-black);
+      }
+
+      .btn-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-gold-lg);
+      }
+
+      .btn-outline {
+        border: var(--border-thick);
+        color: var(--color-gold);
+        background: transparent;
+      }
+
+      .btn-outline:hover {
+        background: var(--gradient-gold);
+        color: var(--color-black);
+      }
+
+      .cart-title {
+        font-family: var(--font-display);
+        font-size: var(--fs-h2);
+        color: var(--color-white);
+        margin-bottom: var(--space-8);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-widest);
+      }
+
+      @media (max-width: 768px) {
+        .cart-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .cart-summary {
+          position: unset;
+          top: auto;
+        }
+
+        .cart-item {
+          grid-template-columns: 1fr;
+        }
+
+        .cart-item-image {
+          width: 100%;
+          height: 200px;
+        }
+
+        .cart-item-quantity,
+        .cart-item-total {
+          justify-self: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header
+      class="header-solid flex items-center"
+      style="position: sticky; top: 0; z-index: 100"
+    >
+      <div
+        class="container container--max flex justify-between items-center w-full"
+      >
+        <nav style="display: flex; gap: var(--space-6)">
+          <a
+            href="../index.html"
+            class="font-body text-xs text-upper tracking-wider fw-medium text-silver hover:text-gold"
+            style="text-decoration: none; transition: color 0.3s"
+            >Accueil</a
+          >
+          <a
+            href="shop.html"
+            class="font-body text-xs text-upper tracking-wider fw-medium text-silver hover:text-gold"
+            style="text-decoration: none; transition: color 0.3s"
+            >Boutique</a
+          >
+          <a
+            href="about.html"
+            class="font-body text-xs text-upper tracking-wider fw-medium text-silver hover:text-gold"
+            style="text-decoration: none; transition: color 0.3s"
+            >La Maison</a
+          >
+          <a
+            href="contact.html"
+            class="font-body text-xs text-upper tracking-wider fw-medium text-silver hover:text-gold"
+            style="text-decoration: none; transition: color 0.3s"
+            >Contact</a
+          >
+        </nav>
+
+        <a
+          href="../index.html"
+          class="font-display text-large text-gold tracking-widest text-upper"
+          style="
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+          "
+        >
+          Chedoudoue
+        </a>
+
+        <div style="display: flex; gap: var(--space-4); align-items: center">
+          <a
+            href="cart.html"
+            class="font-body text-xs text-upper tracking-wider fw-medium text-gold"
+            style="text-decoration: none"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+              ></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            Panier
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main
+      style="
+        min-height: 100vh;
+        background: linear-gradient(
+          180deg,
+          var(--color-obsidian) 0%,
+          var(--color-graphite) 100%
+        );
+      "
+    >
+      <div
+        class="container container--max"
+        style="padding-top: var(--space-12)"
+      >
+        <h1 class="cart-title">Votre Panier</h1>
+
+        <div class="cart-layout">
+          <section class="cart-items-section">
+            <div id="cart-items"></div>
+          </section>
+
+          <aside>
+            <div id="cart-summary"></div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="section section--graphite pb-8"
+      style="margin-top: var(--space-16)"
+    >
+      <div
+        class="container grid gap-8"
+        style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))"
+      >
+        <div>
+          <a
+            href="../index.html"
+            class="font-display text-large text-gold tracking-widest text-upper mb-6 display-block"
+            style="
+              text-decoration: none;
+              display: block;
+              margin-bottom: var(--space-6);
+            "
+            >Chedoudoue</a
+          >
+          <p class="font-editorial text-sm text-silver text-italic">
+            Forgé avec passion, porté avec élégance.
+          </p>
+        </div>
+        <div>
+          <h6 class="text-gold mb-4">Boutique</h6>
+          <ul
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: var(--space-2);
+              font-family: var(--font-body);
+              font-size: var(--fs-sm);
+              color: var(--color-silver);
+              list-style: none;
+            "
+          >
+            <li>
+              <a href="shop.html" style="color: inherit; text-decoration: none"
+                >Tous les produits</a
+              >
+            </li>
+            <li>
+              <a
+                href="shop.html#bijoux"
+                style="color: inherit; text-decoration: none"
+                >Bijoux</a
+              >
+            </li>
+            <li>
+              <a
+                href="shop.html#parfums"
+                style="color: inherit; text-decoration: none"
+                >Parfums</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h6 class="text-gold mb-4">Légal</h6>
+          <ul
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: var(--space-2);
+              font-family: var(--font-body);
+              font-size: var(--fs-sm);
+              color: var(--color-silver);
+              list-style: none;
+            "
+          >
+            <li>
+              <a href="#" style="color: inherit; text-decoration: none">CGV</a>
+            </li>
+            <li>
+              <a href="#" style="color: inherit; text-decoration: none"
+                >Mentions Légales</a
+              >
+            </li>
+            <li>
+              <a href="#" style="color: inherit; text-decoration: none"
+                >Politique de Confidentialité</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="container mt-12 text-center"
+        style="border-top: var(--border-glass); padding-top: var(--space-8)"
+      >
+        <p class="font-body text-xs text-mist tracking-widest text-upper">
+          &copy; 2026 Chedoudoue. Tous droits réservés.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/products.js"></script>
+    <script src="../assets/js/cart.js"></script>
+
+    <script>
+      async function initCart() {
+        await loadProducts();
+        cart.displayCartItems("cart-items");
+        cart.displayCartSummary("cart-summary");
+      }
+
+      window.addEventListener("load", initCart);
+    </script>
+  </body>
+</html>

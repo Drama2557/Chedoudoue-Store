@@ -1,0 +1,1324 @@
+/* ============================================================
+   CHEDOUDOUE — theme.css
+   Fichier : assets/css/theme.css
+   Rôle    : Variables CSS, Reset, Styles globaux, Utilitaires, Preloader
+   Auteur  : Architecte Frontend Senior
+   ============================================================ */
+
+/* ============================================================
+   1. VARIABLES CSS — DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* --- Couleurs principales --- */
+  --color-black: #080808;
+  --color-obsidian: #0e0e0e;
+  --color-graphite: #1c1c1c;
+  --color-graphite-2: #242424;
+  --color-graphite-3: #2e2e2e;
+  --color-smoke: #3a3a3a;
+  --color-mist: #5a5a5a;
+  --color-silver: #8a8a8a;
+  --color-ash: #b0b0b0;
+  --color-ivory: #e8e4dc;
+  --color-white: #f5f3ef;
+  --color-pure-white: #ffffff;
+
+  /* --- Or / Gold palette --- */
+  --color-gold: #c9a84c;
+  --color-gold-light: #e2c472;
+  --color-gold-dark: #a07830;
+  --color-gold-pale: #f0d898;
+  --color-gold-muted: #8a6f32;
+  --color-gold-deep: #6b4f1e;
+
+  /* --- Gradients Gold --- */
+  --gradient-gold: linear-gradient(
+    135deg,
+    #c9a84c 0%,
+    #e2c472 30%,
+    #f0d898 50%,
+    #e2c472 70%,
+    #c9a84c 100%
+  );
+  --gradient-gold-h: linear-gradient(
+    90deg,
+    #a07830 0%,
+    #c9a84c 25%,
+    #e2c472 50%,
+    #c9a84c 75%,
+    #a07830 100%
+  );
+  --gradient-gold-v: linear-gradient(
+    180deg,
+    #c9a84c 0%,
+    #e2c472 50%,
+    #c9a84c 100%
+  );
+  --gradient-gold-radial: radial-gradient(
+    ellipse at center,
+    #e2c472 0%,
+    #c9a84c 40%,
+    #a07830 100%
+  );
+  --gradient-dark: linear-gradient(
+    180deg,
+    #080808 0%,
+    #0e0e0e 50%,
+    #1c1c1c 100%
+  );
+  --gradient-dark-h: linear-gradient(90deg, #080808 0%, #0e0e0e 100%);
+  --gradient-overlay: linear-gradient(
+    180deg,
+    rgba(8, 8, 8, 0) 0%,
+    rgba(8, 8, 8, 0.5) 60%,
+    rgba(8, 8, 8, 0.95) 100%
+  );
+  --gradient-overlay-strong: linear-gradient(
+    180deg,
+    rgba(8, 8, 8, 0.2) 0%,
+    rgba(8, 8, 8, 0.7) 50%,
+    rgba(8, 8, 8, 1) 100%
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    rgba(8, 8, 8, 0.85) 0%,
+    rgba(14, 14, 14, 0.6) 50%,
+    rgba(28, 28, 28, 0.75) 100%
+  );
+  --gradient-glass: linear-gradient(
+    135deg,
+    rgba(28, 28, 28, 0.7) 0%,
+    rgba(14, 14, 14, 0.4) 100%
+  );
+  --gradient-shimmer: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 168, 76, 0.15) 50%,
+    transparent 100%
+  );
+
+  /* --- Typographies --- */
+  --font-display: "Cinzel", "Trajan Pro", serif;
+  --font-editorial: "Cormorant Garamond", "Garamond", serif;
+  --font-body: "Montserrat", "Helvetica Neue", sans-serif;
+
+  /* --- Tailles de police (clamp responsive) --- */
+  --fs-hero: clamp(3rem, 8vw, 8rem);
+  --fs-h1: clamp(2rem, 5vw, 4.5rem);
+  --fs-h2: clamp(1.6rem, 3.5vw, 3rem);
+  --fs-h3: clamp(1.3rem, 2.5vw, 2rem);
+  --fs-h4: clamp(1.1rem, 2vw, 1.5rem);
+  --fs-large: clamp(1rem, 1.5vw, 1.25rem);
+  --fs-base: 1rem; /* 16px */
+  --fs-sm: 0.875rem; /* 14px */
+  --fs-xs: 0.75rem; /* 12px */
+  --fs-xxs: 0.625rem; /* 10px */
+
+  /* --- Poids de police --- */
+  --fw-thin: 100;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* --- Line-heights --- */
+  --lh-tight: 1.1;
+  --lh-snug: 1.3;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+  --lh-loose: 2;
+
+  /* --- Letter-spacings --- */
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.05em;
+  --ls-wider: 0.1em;
+  --ls-widest: 0.2em;
+  --ls-ultra: 0.35em;
+
+  /* --- Espacements (système 4px) --- */
+  --space-1: 0.25rem; /* 4px  */
+  --space-2: 0.5rem; /* 8px  */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+  --space-32: 8rem; /* 128px */
+  --space-40: 10rem; /* 160px */
+  --space-48: 12rem; /* 192px */
+
+  /* --- Conteneur --- */
+  --container-xs: 480px;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1440px;
+  --container-max: 1600px;
+  --container-pad: clamp(1rem, 5vw, 3rem);
+
+  /* --- Border-radius --- */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-pill: 9999px;
+  --radius-round: 50%;
+
+  /* --- Ombres / Shadows --- */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 16px 60px rgba(0, 0, 0, 0.8);
+  --shadow-2xl: 0 24px 80px rgba(0, 0, 0, 0.9);
+  --shadow-gold:
+    0 0 20px rgba(201, 168, 76, 0.25), 0 0 40px rgba(201, 168, 76, 0.1);
+  --shadow-gold-sm: 0 0 10px rgba(201, 168, 76, 0.3);
+  --shadow-gold-lg:
+    0 0 40px rgba(201, 168, 76, 0.4), 0 0 80px rgba(201, 168, 76, 0.15);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-inner: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  /* --- Transitions --- */
+  --transition-instant: 80ms ease;
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+  --transition-slower: 800ms ease;
+  --transition-glacial: 1200ms ease;
+  --transition-elastic: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-smooth: 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-expo: 600ms cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* --- Z-index layers --- */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-overlay: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+  --z-cursor: 9000;
+  --z-preloader: 9999;
+
+  /* --- Borders --- */
+  --border-thin: 1px solid rgba(201, 168, 76, 0.15);
+  --border-base: 1px solid rgba(201, 168, 76, 0.25);
+  --border-thick: 2px solid rgba(201, 168, 76, 0.35);
+  --border-bold: 2px solid var(--color-gold);
+  --border-smoke: 1px solid rgba(255, 255, 255, 0.06);
+  --border-glass: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* --- Navbar --- */
+  --navbar-height: 80px;
+  --navbar-height-scrolled: 60px;
+
+  /* --- Glassmorphism --- */
+  --glass-bg: rgba(14, 14, 14, 0.75);
+  --glass-blur: blur(20px);
+  --glass-border: 1px solid rgba(201, 168, 76, 0.12);
+}
+
+/* ============================================================
+   2. RESET CSS COMPLET
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height);
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  tab-size: 2;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--color-ivory);
+  background-color: var(--color-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button {
+  cursor: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-tight);
+}
+
+address {
+  font-style: normal;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  border: none;
+  border-top: var(--border-thin);
+  margin: var(--space-8) 0;
+}
+
+summary {
+  cursor: none;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+fieldset {
+  border: none;
+}
+
+::placeholder {
+  color: var(--color-mist);
+  opacity: 1;
+}
+
+/* ============================================================
+   3. SCROLLBAR CUSTOM GOLD
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-gold);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-light);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--color-obsidian);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) var(--color-obsidian);
+}
+
+/* ============================================================
+   4. SÉLECTION DE TEXTE
+   ============================================================ */
+::selection {
+  background-color: rgba(201, 168, 76, 0.25);
+  color: var(--color-gold-pale);
+}
+
+::-moz-selection {
+  background-color: rgba(201, 168, 76, 0.25);
+  color: var(--color-gold-pale);
+}
+
+/* ============================================================
+   5. TYPOGRAPHIE GLOBALE
+   ============================================================ */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  letter-spacing: var(--ls-wide);
+}
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  letter-spacing: var(--ls-wide);
+}
+h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  letter-spacing: var(--ls-wide);
+}
+h4 {
+  font-family: var(--font-editorial);
+  font-size: var(--fs-h4);
+  font-style: italic;
+}
+h5 {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+h6 {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+}
+
+p {
+  max-width: 72ch;
+  line-height: var(--lh-relaxed);
+}
+
+/* ============================================================
+   6. LAYOUT — CLASSES UTILITAIRES
+   ============================================================ */
+
+/* Conteneur principal */
+.container {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.container--sm {
+  max-width: var(--container-sm);
+}
+.container--md {
+  max-width: var(--container-md);
+}
+.container--lg {
+  max-width: var(--container-lg);
+}
+.container--xl {
+  max-width: var(--container-xl);
+}
+.container--max {
+  max-width: var(--container-max);
+}
+
+/* Section générique */
+.section {
+  position: relative;
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+.section--sm {
+  padding-block: clamp(2rem, 4vw, 4rem);
+}
+
+.section--lg {
+  padding-block: clamp(6rem, 12vw, 12rem);
+}
+
+.section--dark {
+  background-color: var(--color-black);
+}
+.section--obsidian {
+  background-color: var(--color-obsidian);
+}
+.section--graphite {
+  background-color: var(--color-graphite);
+}
+
+/* Flexbox helpers */
+.flex {
+  display: flex;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-end {
+  align-items: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.gap-2 {
+  gap: var(--space-2);
+}
+.gap-4 {
+  gap: var(--space-4);
+}
+.gap-6 {
+  gap: var(--space-6);
+}
+.gap-8 {
+  gap: var(--space-8);
+}
+
+/* Grid helpers */
+.grid {
+  display: grid;
+}
+
+/* ============================================================
+   7. CLASSES UTILITAIRES COULEURS / TYPO
+   ============================================================ */
+.text-gold {
+  color: var(--color-gold);
+}
+.text-gold-light {
+  color: var(--color-gold-light);
+}
+.text-ivory {
+  color: var(--color-ivory);
+}
+.text-silver {
+  color: var(--color-silver);
+}
+.text-white {
+  color: var(--color-white);
+}
+.text-muted {
+  color: var(--color-mist);
+}
+
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+.text-italic {
+  font-style: italic;
+}
+
+.text-sm {
+  font-size: var(--fs-sm);
+}
+.text-xs {
+  font-size: var(--fs-xs);
+}
+.text-large {
+  font-size: var(--fs-large);
+}
+
+.tracking-wide {
+  letter-spacing: var(--ls-wide);
+}
+.tracking-wider {
+  letter-spacing: var(--ls-wider);
+}
+.tracking-widest {
+  letter-spacing: var(--ls-widest);
+}
+.tracking-ultra {
+  letter-spacing: var(--ls-ultra);
+}
+
+.leading-tight {
+  line-height: var(--lh-tight);
+}
+.leading-relaxed {
+  line-height: var(--lh-relaxed);
+}
+
+.fw-light {
+  font-weight: var(--fw-light);
+}
+.fw-medium {
+  font-weight: var(--fw-medium);
+}
+.fw-bold {
+  font-weight: var(--fw-bold);
+}
+
+/* Gradient text gold */
+.text-gradient-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   8. ORNEMENTS DÉCORATIFS
+   ============================================================ */
+
+/* Ornement générique */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  justify-content: center;
+}
+
+.ornament::before,
+.ornament::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 60px;
+  background: var(--gradient-gold-h);
+  opacity: 0.6;
+}
+
+/* Ligne décorative gold */
+.divider-gold {
+  width: 80px;
+  height: 1px;
+  background: var(--gradient-gold-h);
+  margin: var(--space-6) auto;
+  border: none;
+}
+
+.divider-gold--left {
+  margin-left: 0;
+}
+
+/* Diamond ornement */
+.diamond {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--color-gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* Section label — petite capsule au-dessus du titre */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--fs-xxs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-ultra);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-4);
+}
+
+.section-label::before,
+.section-label::after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.7;
+}
+
+/* ============================================================
+   9. UTILITAIRES SPACING / DISPLAY
+   ============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+.visible {
+  visibility: visible !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.inset-0 {
+  inset: 0;
+}
+
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.mr-auto {
+  margin-right: auto;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+
+/* ============================================================
+   10. PRELOADER
+   ============================================================ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  background-color: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
+}
+
+#preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Logo du preloader */
+.preloader__logo {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  letter-spacing: var(--ls-ultra);
+  text-transform: uppercase;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+
+/* Sous-titre preloader */
+.preloader__sub {
+  font-family: var(--font-editorial);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  letter-spacing: var(--ls-wider);
+  color: var(--color-gold-muted);
+  animation: preloaderPulse 1.5s ease-in-out infinite 0.3s;
+}
+
+/* Barre de progression */
+.preloader__bar-wrap {
+  width: min(280px, 60vw);
+  height: 1px;
+  background: rgba(201, 168, 76, 0.15);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.preloader__bar {
+  height: 100%;
+  width: 0%;
+  background: var(--gradient-gold-h);
+  border-radius: var(--radius-pill);
+  animation: preloaderBar 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.6);
+}
+
+/* Losanges animés */
+.preloader__dots {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.preloader__dots span {
+  width: 5px;
+  height: 5px;
+  background: var(--color-gold);
+  transform: rotate(45deg);
+  animation: preloaderPulse 1s ease-in-out infinite;
+}
+
+.preloader__dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+.preloader__dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.preloader__dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ============================================================
+   11. ÉTAT BODY VERROUILLÉ (MENU OUVERT / MODAL)
+   ============================================================ */
+body.is-locked {
+  overflow: hidden;
+}
+
+/* ============================================================
+   12. FOCUS VISIBLE ACCESSIBLE
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   13. LIENS GLOBAUX
+   ============================================================ */
+a {
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-gold-light);
+}
+
+/* ============================================================
+   14. IMAGE PLACEHOLDER (EN REMPLACEMENT DES VRAIES IMAGES)
+   ============================================================ */
+.img-placeholder {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-graphite);
+}
+
+.img-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.08) 0%,
+    rgba(14, 14, 14, 1) 40%,
+    rgba(201, 168, 76, 0.05) 70%,
+    rgba(8, 8, 8, 1) 100%
+  );
+}
+
+.img-placeholder--warm::before {
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.2) 0%,
+    rgba(28, 28, 28, 0.95) 50%,
+    rgba(201, 168, 76, 0.12) 100%
+  );
+}
+
+.img-placeholder--light::before {
+  background: linear-gradient(
+    160deg,
+    rgba(226, 196, 114, 0.15) 0%,
+    rgba(42, 42, 42, 0.9) 60%,
+    rgba(201, 168, 76, 0.1) 100%
+  );
+}
+
+/* ============================================================
+   15. GRILLE ET CARTES PRODUITS
+   ============================================================ */
+/* Grille de produits */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+/* Carte Produit */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  group: relative;
+  cursor: pointer;
+}
+
+/* Conteneur Image avec Overlay */
+.product-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4; /* Format portrait élégant type mode/luxe */
+  background: var(--color-graphite);
+  margin-bottom: var(--space-4);
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.5s ease;
+  opacity: 0.85;
+}
+
+/* Effet au survol */
+.product-card:hover .product-image {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.product-card:hover .product-title {
+  color: var(--color-gold);
+}
+
+/* Bouton Ajout rapide (caché par défaut) */
+.quick-add-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-3);
+  background: rgba(20, 20, 20, 0.9); /* Obsidian transparent */
+  color: var(--color-ivory);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  border: none;
+  border-top: 1px solid var(--color-gold);
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+
+.product-card:hover .quick-add-btn {
+  transform: translateY(0);
+}
+
+.quick-add-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
+/* Informations Produit */
+.product-info {
+  text-align: center;
+}
+
+.product-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  color: var(--color-ivory);
+  margin-bottom: var(--space-1);
+  transition: color 0.3s ease;
+}
+
+.product-price {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--color-silver);
+}
+
+/* ============================================================
+   FIN — theme.css
+   ============================================================ */
+
+/* Layout principal de la boutique */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+}
+
+/* Responsive : sur mobile, on empile les filtres au-dessus des produits */
+@media (max-width: 900px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+/* Sidebar des filtres */
+.sidebar {
+  position: sticky;
+  top: 120px; /* Reste visible au scroll, sous le header */
+  height: max-content;
+}
+
+.filter-group {
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: var(--space-6);
+}
+
+.filter-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  margin-bottom: var(--space-4);
+}
+
+.filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-item {
+  margin-bottom: var(--space-3);
+}
+
+/* Style des cases à cocher (Checkboxes) de luxe */
+.filter-label {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--color-silver);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.filter-label:hover {
+  color: var(--color-ivory);
+}
+
+.filter-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-silver);
+  background: transparent;
+  margin-right: var(--space-3);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.filter-checkbox:checked {
+  border-color: var(--color-gold);
+  background: var(--color-gold);
+}
+
+/* Encoche (checkmark) personnalisée */
+.filter-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--color-black);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* En-tête de la page shop */
+.shop-header {
+  text-align: center;
+  padding: var(--space-12) 0 var(--space-8);
+}
+/* --- Layout Fiche Produit --- */
+.product-detail-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* La galerie prend un peu plus de place */
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-16);
+}
+
+@media (max-width: 900px) {
+  .product-detail-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+/* --- Galerie d'images --- */
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.gallery-main-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  background-color: #1a1a1a;
+}
+
+.gallery-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.gallery-thumb {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  transition:
+    opacity 0.3s ease,
+    border 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.gallery-thumb:hover,
+.gallery-thumb.active {
+  opacity: 1;
+  border-color: var(--color-gold);
+}
+
+/* --- Panneau d'informations --- */
+.product-info-panel {
+  position: sticky;
+  top: 100px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.breadcrumb {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--color-silver);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.breadcrumb a {
+  color: var(--color-silver);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-gold);
+}
+
+.product-detail-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--color-ivory);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  line-height: 1.1;
+}
+
+.product-detail-price {
+  font-family: var(--font-body);
+  font-size: var(--fs-lg);
+  color: var(--color-gold);
+}
+
+.product-detail-description {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-silver);
+  line-height: 1.6;
+}
+
+/* --- Sélecteur de Variantes (Tailles / Longueurs) --- */
+.variant-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.variant-label {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--color-ivory);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.variant-options {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.variant-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-silver);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.variant-btn:hover {
+  border-color: var(--color-ivory);
+  color: var(--color-ivory);
+}
+
+.variant-btn.selected {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+/* --- Bouton d'ajout principal --- */
+.btn-add-to-cart {
+  background-color: var(--color-gold);
+  color: var(--color-black);
+  border: none;
+  padding: var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.btn-add-to-cart:hover {
+  background-color: #e6c55e;
+  transform: translateY(-2px);
+}
+
+/* --- Accordéons de détails --- */
+.accordion {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: var(--space-8);
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordion-header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: var(--space-4) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-ivory);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  cursor: pointer;
+}
+
+.accordion-content {
+  padding-bottom: var(--space-4);
+  color: var(--color-silver);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  display: none; /* Masqué par défaut */
+}
+
+/* Pour simuler l'ouverture en pur CSS/HTML pour l'instant */
+.accordion-item.active .accordion-content {
+  display: block;
+}

@@ -1,0 +1,327 @@
+/* ==========================================================================
+   VISIORA — Motion, hover polish, keyframes
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Scroll reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 1.5rem, 0);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible,
+.reveal.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal--left {
+  transform: translate3d(-1.5rem, 0, 0);
+}
+
+.reveal--left.is-visible,
+.reveal--left.active {
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal--scale {
+  transform: scale(0.96);
+}
+
+.reveal--scale.is-visible,
+.reveal--scale.active {
+  transform: scale(1);
+}
+
+.delay-1 {
+  transition-delay: 80ms;
+}
+.delay-2 {
+  transition-delay: 140ms;
+}
+.delay-3 {
+  transition-delay: 200ms;
+}
+.delay-4 {
+  transition-delay: 260ms;
+}
+
+/* --- Float ambient --- */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes float-rotate {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0) rotate(2deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(126, 200, 255, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(126, 200, 255, 0);
+  }
+}
+
+.animate-float {
+  animation: float-y 6s var(--ease-out) infinite;
+}
+
+.animate-float-slow {
+  animation: float-y 9s var(--ease-out) infinite;
+}
+
+.animate-tilt {
+  animation: float-rotate 8s var(--ease-out) infinite;
+}
+
+.hero__aside .glass {
+  animation: float-y 7s var(--ease-out) infinite;
+}
+
+.hero__aside .glass:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.gradient-shimmer {
+  background-size: 200% 200%;
+  animation: shimmer 8s linear infinite;
+}
+
+.ai-card__icon {
+  animation: pulse-glow 3.5s var(--ease-out) infinite;
+}
+
+/* --- Underline nav (optional alt) --- */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-cta);
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+.link-underline:hover::after,
+.link-underline.is-active::after {
+  width: 100%;
+}
+
+/* --- Card shine on hover --- */
+.product-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.product-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transform: translateX(-30%);
+  transition:
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.product-card:hover::after {
+  opacity: 1;
+  transform: translateX(30%);
+}
+
+.product-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Page enter --- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-fade-in {
+  animation: fade-in var(--duration-slow) var(--ease-out) both;
+}
+
+/* --- Stagger children --- */
+.stagger-children > * {
+  opacity: 0;
+  transform: translate3d(0, 0.75rem, 0);
+  animation: stagger-in var(--duration-slow) var(--ease-out) forwards;
+}
+
+@keyframes stagger-in {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 120ms;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 180ms;
+}
+.stagger-children > *:nth-child(5) {
+  animation-delay: 240ms;
+}
+.stagger-children > *:nth-child(6) {
+  animation-delay: 300ms;
+}
+.stagger-children > *:nth-child(7) {
+  animation-delay: 360ms;
+}
+.stagger-children > *:nth-child(8) {
+  animation-delay: 420ms;
+}
+
+/* --- Subtle parallax helper (JS toggles transform) --- */
+.parallax-soft {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* --- Loader --- */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.45);
+  border-top-color: rgba(107, 140, 255, 0.9);
+  animation: spin 0.8s linear infinite;
+}
+
+/* --- Custom cursor (effects.js) --- */
+@media (pointer: fine) {
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    background: var(--gradient-cta);
+    opacity: 0;
+    transition: opacity 0.25s var(--ease-out);
+  }
+
+  .cursor-outline {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(107, 140, 255, 0.35);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition:
+      width var(--duration-fast) var(--ease-out),
+      height var(--duration-fast) var(--ease-out),
+      opacity 0.25s var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      background var(--duration-fast) var(--ease-out);
+  }
+
+  body:not(.loading) .cursor-dot,
+  body:not(.loading) .cursor-outline {
+    opacity: 1;
+  }
+
+  body.cursor-hover .cursor-outline {
+    width: 52px;
+    height: 52px;
+    border-color: rgba(244, 114, 182, 0.45);
+    background: rgba(167, 139, 250, 0.08);
+  }
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(220%);
+    opacity: 0;
+  }
+}

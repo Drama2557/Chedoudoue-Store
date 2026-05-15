@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paiement Sécurisé | Chedoudoue</title>
+    <link rel="stylesheet" href="assets/css/theme.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .header-minimal {
+        padding-block: var(--space-6);
+        text-align: center;
+        border-bottom: var(--border-smoke);
+        background: var(--color-obsidian);
+      }
+      .checkout-layout {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: var(--space-16);
+        align-items: start;
+      }
+
+      /* Styles de Formulaire Senior */
+      fieldset {
+        border: none;
+        padding: 0;
+        margin: 0 0 var(--space-8) 0;
+      }
+      legend {
+        font-family: var(--font-display);
+        font-size: var(--fs-lg);
+        color: var(--color-gold);
+        margin-bottom: var(--space-6);
+        width: 100%;
+        border-bottom: var(--border-smoke);
+        padding-bottom: var(--space-2);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+      .form-group--full {
+        grid-column: 1 / -1;
+      }
+
+      .label-custom {
+        font-family: var(--font-body);
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-wider);
+        color: var(--color-silver);
+      }
+      .input-custom {
+        padding: var(--space-3);
+        background: transparent;
+        border: var(--border-smoke);
+        color: var(--color-ivory);
+        font-family: var(--font-body);
+        font-size: var(--fs-sm);
+        outline: none;
+        transition: border-color var(--transition-fast);
+      }
+      .input-custom:focus {
+        border-color: var(--color-gold);
+      }
+
+      .summary-box {
+        background: var(--color-graphite);
+        padding: var(--space-8);
+        border: var(--border-thin);
+      }
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-4);
+      }
+      .btn-gold-full {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-4);
+        background: var(--gradient-gold);
+        color: var(--color-black);
+        font-family: var(--font-body);
+        font-weight: var(--fw-bold);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-widest);
+        cursor: pointer;
+        border: none;
+        transition: transform var(--transition-fast);
+      }
+      .btn-gold-full:hover {
+        transform: translateY(-1px);
+      }
+
+      @media (max-width: 992px) {
+        .checkout-layout {
+          grid-template-columns: 1fr;
+          flex-direction: column-reverse;
+          display: flex;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="section--dark">
+    <header class="header-minimal">
+      <a
+        href="index.html"
+        class="font-display text-large text-gold tracking-widest text-upper"
+        >Chedoudoue</a
+      >
+      <p class="font-body text-xs text-mist tracking-widest mt-2 uppercase">
+        Paiement 100% Sécurisé
+      </p>
+    </header>
+
+    <main class="section section--sm">
+      <div class="container container--xl checkout-layout">
+        <!-- Colonne de gauche : Formulaire -->
+        <form action="confirmation.html" method="POST">
+          <!-- Contact -->
+          <fieldset>
+            <legend>Contact</legend>
+            <div class="form-group form-group--full">
+              <label for="email" class="label-custom">Adresse e-mail</label>
+              <input
+                type="email"
+                id="email"
+                class="input-custom"
+                required
+                placeholder="vous@exemple.com"
+              />
+            </div>
+          </fieldset>
+
+          <!-- Livraison -->
+          <fieldset>
+            <legend>Adresse de livraison</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="firstname" class="label-custom">Prénom</label>
+                <input
+                  type="text"
+                  id="firstname"
+                  class="input-custom"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastname" class="label-custom">Nom</label>
+                <input
+                  type="text"
+                  id="lastname"
+                  class="input-custom"
+                  required
+                />
+              </div>
+              <div class="form-group form-group--full">
+                <label for="address" class="label-custom">Adresse</label>
+                <input
+                  type="text"
+                  id="address"
+                  class="input-custom"
+                  required
+                  placeholder="N°, rue, avenue..."
+                />
+              </div>
+              <div class="form-group">
+                <label for="zipcode" class="label-custom">Code Postal</label>
+                <input type="text" id="zipcode" class="input-custom" required />
+              </div>
+              <div class="form-group">
+                <label for="city" class="label-custom">Ville</label>
+                <input type="text" id="city" class="input-custom" required />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Paiement -->
+          <fieldset>
+            <legend>Paiement</legend>
+            <div class="form-grid">
+              <div class="form-group form-group--full">
+                <label for="cardname" class="label-custom"
+                  >Nom sur la carte</label
+                >
+                <input
+                  type="text"
+                  id="cardname"
+                  class="input-custom"
+                  required
+                />
+              </div>
+              <div class="form-group form-group--full">
+                <label for="cardnumber" class="label-custom"
+                  >Numéro de carte</label
+                >
+                <input
+                  type="text"
+                  id="cardnumber"
+                  class="input-custom"
+                  required
+                  placeholder="0000 0000 0000 0000"
+                />
+              </div>
+              <div class="form-group">
+                <label for="expdate" class="label-custom"
+                  >Date d'expiration (MM/AA)</label
+                >
+                <input
+                  type="text"
+                  id="expdate"
+                  class="input-custom"
+                  required
+                  placeholder="MM/AA"
+                />
+              </div>
+              <div class="form-group">
+                <label for="cvv" class="label-custom">Cryptogramme (CVV)</label>
+                <input
+                  type="text"
+                  id="cvv"
+                  class="input-custom"
+                  required
+                  placeholder="123"
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn-gold-full mt-4">
+            Confirmer le paiement - 2 770 €
+          </button>
+        </form>
+
+        <!-- Colonne de droite : Récapitulatif -->
+        <aside class="summary-box sticky" style="top: var(--space-8)">
+          <h3
+            class="font-body text-sm text-upper tracking-wider text-ivory mb-6"
+          >
+            Votre Commande
+          </h3>
+
+          <div class="summary-item">
+            <div class="flex items-center gap-4">
+              <div
+                class="img-placeholder img-placeholder--warm"
+                style="width: 50px; height: 50px"
+              ></div>
+              <div>
+                <p class="font-editorial text-ivory mb-1">Bague Éternité</p>
+                <p class="font-body text-xs text-mist">Qté : 1</p>
+              </div>
+            </div>
+            <span class="font-body text-sm text-gold">1 850 €</span>
+          </div>
+
+          <div class="summary-item border-b border-smoke pb-6 mb-6">
+            <div class="flex items-center gap-4">
+              <div
+                class="img-placeholder img-placeholder--light"
+                style="width: 50px; height: 50px"
+              ></div>
+              <div>
+                <p class="font-editorial text-ivory mb-1">
+                  Collier Goutte d'Or
+                </p>
+                <p class="font-body text-xs text-mist">Qté : 1</p>
+              </div>
+            </div>
+            <span class="font-body text-sm text-gold">920 €</span>
+          </div>
+
+          <div class="flex justify-between font-body text-silver text-sm mb-2">
+            <span>Sous-total</span>
+            <span>2 770 €</span>
+          </div>
+          <div class="flex justify-between font-body text-silver text-sm mb-6">
+            <span>Livraison</span>
+            <span>Offerte</span>
+          </div>
+
+          <div
+            class="flex justify-between font-body text-large text-ivory fw-bold pt-4 border-t border-smoke"
+          >
+            <span>Total</span>
+            <span class="text-gold">2 770 €</span>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>
