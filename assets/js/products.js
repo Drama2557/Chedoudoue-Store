@@ -3,6 +3,7 @@
 // ============================================================
 
 let products = [];
+let categories = [];
 let filteredProducts = [];
 
 // Charger les produits depuis le JSON
@@ -17,6 +18,7 @@ async function loadProducts() {
     const response = await fetch(jsonPath);
     const data = await response.json();
     products = data.products;
+    categories = data.categories || [];
     filteredProducts = [...products];
     return data;
   } catch (error) {
@@ -28,6 +30,11 @@ async function loadProducts() {
 // Obtenir les catégories uniques
 function getCategories() {
   return [...new Set(products.map((p) => p.category))];
+}
+
+// Obtenir une catégorie par son ID
+function getCategoryById(id) {
+  return categories.find((c) => c.id === id) || null;
 }
 
 // Filtrer les produits
@@ -76,9 +83,22 @@ function getProductById(id) {
   return products.find((p) => p.id === id);
 }
 
-// Obtenir les produits en vedette
+// Obtenir les produits en vedette (un par catégorie, images HD prioritaires)
 function getFeaturedProducts(limit = 6) {
-  return products.filter((p) => p.featured).slice(0, limit);
+  const hdByCategory = {};
+  const firstByCategory = {};
+  products.forEach((p) => {
+    if (!p.featured) return;
+    if (p.image_folder === "hd" && !hdByCategory[p.category]) hdByCategory[p.category] = p;
+    if (!firstByCategory[p.category]) firstByCategory[p.category] = p;
+  });
+  const allCats = new Set([...Object.keys(hdByCategory), ...Object.keys(firstByCategory)]);
+  const diverse = [];
+  allCats.forEach((cat) => diverse.push(hdByCategory[cat] || firstByCategory[cat]));
+  if (diverse.length >= limit) return diverse.slice(0, limit);
+  const diverseIds = new Set(diverse.map((p) => p.id));
+  const rest = products.filter((p) => p.featured && !diverseIds.has(p.id));
+  return [...diverse, ...rest].slice(0, limit);
 }
 
 // Obtenir les meilleures ventes
@@ -107,9 +127,9 @@ function createProductCard(product, variant = "default") {
   return `
     <article class="product-card" data-product-id="${product.id}">
       <div class="product-image-wrapper">
-        <img 
-          src="assets/images/${getCategoryFolder(product.category)}/${product.image}" 
-          alt="${product.name}" 
+        <img
+          src="assets/images/${getImageFolder(product)}/${product.image}"
+          alt="${product.name}"
           class="product-image"
           loading="lazy"
         />
@@ -132,10 +152,7 @@ function createProductCard(product, variant = "default") {
           ${createRatingStars(product.rating)}
           <span class="rating-text">(${product.reviews} avis)</span>
         </div>
-        <div class="product-price">
-          <span class="price-current">${product.price.toFixed(0)} €</span>
-          ${product.original_price ? `<span class="price-original">${product.original_price.toFixed(0)} €</span>` : ""}
-        </div>
+        ${CURRENCY.block(product.price, product.original_price || null)}
         <button class="btn btn-add-cart" data-product-id="${product.id}">
           Ajouter au panier
         </button>
@@ -175,6 +192,11 @@ function getCategoryFolder(category) {
     homme: "vetements-homme",
   };
   return folderMap[category] || category;
+}
+
+// Résoudre le dossier d'images d'un produit (supporte image_folder override)
+function getImageFolder(product) {
+  return product.image_folder || getCategoryFolder(product.category);
 }
 
 // Afficher les produits filtrés

@@ -10,20 +10,20 @@ class ShoppingCart {
 
   // Charger le panier depuis localStorage
   loadFromStorage() {
-    const stored = localStorage.getItem("chedoudoue_cart");
-    if (stored) {
-      try {
-        this.items = JSON.parse(stored);
-      } catch (error) {
-        console.error("Erreur lors du chargement du panier:", error);
-        this.items = [];
-      }
-    }
+    const data = Store.get(Store.KEYS.CART);
+    const raw = Array.isArray(data) ? data : [];
+    // Sanitise stale items: invalid quantity becomes 1, missing required fields are dropped
+    this.items = raw
+      .filter(item => item && typeof item.id === 'string' && typeof item.price === 'number')
+      .map(item => {
+        const qty = parseInt(item.quantity, 10);
+        return { ...item, quantity: (qty > 0 ? qty : 1) };
+      });
   }
 
   // Sauvegarder le panier dans localStorage
   saveToStorage() {
-    localStorage.setItem("chedoudoue_cart", JSON.stringify(this.items));
+    Store.set(Store.KEYS.CART, this.items);
     this.updateCartCount();
   }
 
@@ -40,6 +40,7 @@ class ShoppingCart {
         price: product.price,
         original_price: product.original_price,
         image: product.image,
+        image_folder: product.image_folder,
         category: product.category,
         quantity: quantity,
       });
@@ -151,13 +152,23 @@ class ShoppingCart {
 
     container.innerHTML = this.items
       .map(
-        (item) => `
+        (item) => {
+          // Resolve image folder: stored value → full product lookup → category fallback
+          let folder = item.image_folder;
+          if (!folder && typeof products !== 'undefined' && Array.isArray(products)) {
+            const full = products.find(p => p.id === item.id);
+            if (full) folder = getImageFolder(full);
+          }
+          if (!folder) folder = getImageFolder(item);
+          const imgSrc = `../assets/images/${folder}/${item.image}`;
+          return `
       <div class="cart-item" data-product-id="${item.id}">
-        <img src="../assets/images/${getCategoryFolder(item.category)}/${item.image}" alt="${item.name}" class="cart-item-image"/>
+        <img src="${imgSrc}" alt="${item.name}" class="cart-item-image"
+             onerror="this.onerror=null;this.style.opacity='0.15';this.src='../assets/logo/logo.jpg'"/>
         <div class="cart-item-details">
           <h4>${item.name}</h4>
           <p class="cart-item-category">${item.category}</p>
-          <p class="cart-item-price">${item.price} €</p>
+          <p class="cart-item-price">${CURRENCY.usd(item.price)}</p>
         </div>
         <div class="cart-item-quantity">
           <button class="qty-btn qty-minus" data-product-id="${item.id}">−</button>
@@ -165,7 +176,7 @@ class ShoppingCart {
           <button class="qty-btn qty-plus" data-product-id="${item.id}">+</button>
         </div>
         <div class="cart-item-total">
-          ${(item.price * item.quantity).toFixed(0)} €
+          ${CURRENCY.usd(item.price * item.quantity)}
         </div>
         <button class="cart-item-remove" data-product-id="${item.id}" aria-label="Supprimer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -173,7 +184,8 @@ class ShoppingCart {
           </svg>
         </button>
       </div>
-    `,
+    `;
+        }
       )
       .join("");
 
@@ -196,25 +208,25 @@ class ShoppingCart {
         <h3>Résumé de la commande</h3>
         <div class="summary-line">
           <span>Sous-total</span>
-          <span>${subtotal.toFixed(0)} €</span>
+          <span>${CURRENCY.total(subtotal)}</span>
         </div>
         ${
           savings > 0
             ? `
           <div class="summary-line summary-savings">
             <span>Économies</span>
-            <span>-${savings.toFixed(0)} €</span>
+            <span>-${CURRENCY.usd(savings)}</span>
           </div>
         `
             : ""
         }
         <div class="summary-line">
           <span>Livraison</span>
-          <span>${shipping === 0 ? "Gratuite" : shipping + " €"}</span>
+          <span>${shipping === 0 ? "Gratuite" : CURRENCY.usd(shipping)}</span>
         </div>
         <div class="summary-line summary-total">
           <span>Total</span>
-          <span>${total.toFixed(0)} €</span>
+          <span>${CURRENCY.total(total)}</span>
         </div>
         <a href="checkout.html" class="btn btn-gold btn-full">Procéder au paiement</a>
         <a href="shop.html" class="btn btn-outline btn-full">Continuer les achats</a>

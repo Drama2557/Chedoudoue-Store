@@ -262,7 +262,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  cursor: none;
+  cursor: auto;
 }
 
 img,
@@ -292,7 +292,7 @@ textarea {
 }
 
 button {
-  cursor: none;
+  cursor: pointer;
 }
 
 ul,
@@ -331,7 +331,7 @@ hr {
 }
 
 summary {
-  cursor: none;
+  cursor: pointer;
   list-style: none;
 }
 

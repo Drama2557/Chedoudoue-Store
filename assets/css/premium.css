@@ -189,18 +189,64 @@
   text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
 }
 
-.product-price {
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  color: var(--color-gold);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-wider);
-  transition: all 0.3s ease;
+/* ===== DUAL-CURRENCY PRICE BLOCK ===== */
+.price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: var(--space-3);
 }
 
-.product-card:hover .product-price {
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.price-now {
+  font-family: var(--font-body);
   font-size: var(--fs-base);
-  text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 1px;
+  line-height: 1.2;
+  transition: text-shadow 0.3s ease;
+}
+
+.product-card:hover .price-now {
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+.price-was {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(245, 245, 240, 0.35);
+  text-decoration: line-through;
+  letter-spacing: 0.3px;
+}
+
+.price-gdes {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(212, 175, 55, 0.45);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Inline HTG for totals & summaries */
+.price-gdes-inline {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(212, 175, 55, 0.45);
+  letter-spacing: 1px;
+}
+
+/* Legacy wrapper — kept for product cards in index + shop */
+.product-price {
+  margin-bottom: var(--space-3);
 }
 
 /* --- Rating Stars --- */

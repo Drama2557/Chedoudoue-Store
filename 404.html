@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page Introuvable | CHEDOUDOUE STORE</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/theme.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/premium.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <style>
+      /* ===== NAVIGATION (Système 1 — identique à index.html) ===== */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        background: rgba(10, 10, 10, 0.7);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        background: rgba(10, 10, 10, 0.95);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      }
+
+      .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--space-6);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .nav-logo-img {
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 1.5px solid rgba(212, 175, 55, 0.5);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.18);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+
+      .nav-logo:hover .nav-logo-img {
+        border-color: #d4af37;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+      }
+
+      .nav-logo-separator {
+        width: 1px;
+        height: 24px;
+        background: rgba(212, 175, 55, 0.35);
+        flex-shrink: 0;
+      }
+
+      .nav-logo-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .nav-logo-text {
+        font-family: var(--font-display);
+        font-size: 15px;
+        font-weight: 700;
+        color: #d4af37;
+        letter-spacing: 3px;
+        line-height: 1;
+        transition: all 0.3s ease;
+      }
+
+      .nav-logo-tagline {
+        font-family: var(--font-editorial);
+        font-size: 9.5px;
+        font-weight: 400;
+        font-style: italic;
+        color: rgba(212, 175, 55, 0.65);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+
+      .nav-logo:hover .nav-logo-text {
+        color: #e8c84a;
+        text-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: var(--space-6);
+        align-items: center;
+      }
+
+      .nav-link {
+        font-family: var(--font-body);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #f5f5f0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        padding-bottom: 5px;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after { width: 100%; }
+      .nav-link:hover { color: #d4af37; }
+
+      .nav-actions {
+        display: flex;
+        gap: var(--space-4);
+        align-items: center;
+      }
+
+      .nav-cart {
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        text-decoration: none;
+        color: #d4af37;
+      }
+
+      .nav-cart:hover { transform: scale(1.1); }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #d4af37;
+        color: #0a0a0a;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      /* ===== PAGE D'ERREUR ===== */
+      .error-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: calc(60px + var(--space-20)) var(--space-8) var(--space-20);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Halo doré de fond — ambiance luxe */
+      .error-page::before {
+        content: '';
+        position: absolute;
+        width: 60vw;
+        height: 60vw;
+        max-width: 800px;
+        max-height: 800px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at center,
+          rgba(212, 175, 55, 0.06) 0%,
+          transparent 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .error-container {
+        text-align: center;
+        max-width: 680px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Chiffre 404 — gradient or, animation float */
+      .error-code {
+        font-family: var(--font-display);
+        font-size: clamp(7rem, 22vw, 16rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        background: linear-gradient(
+          135deg,
+          #a87d1a 0%,
+          #f2d864 35%,
+          #d4af37 55%,
+          #e8c84a 75%,
+          #a87d1a 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--space-6);
+        user-select: none;
+      }
+
+      /* Ligne décorative or */
+      .error-separator {
+        width: 60px;
+        height: 2px;
+        background: #d4af37;
+        margin: 0 auto var(--space-8);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+      }
+
+      .error-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+        font-weight: 600;
+        color: #f5f5f0;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: var(--space-5);
+      }
+
+      .error-subtitle {
+        font-family: var(--font-editorial);
+        font-size: clamp(1rem, 1.8vw, 1.2rem);
+        font-style: italic;
+        font-weight: 400;
+        color: rgba(245, 245, 240, 0.6);
+        line-height: 1.8;
+        margin-bottom: var(--space-10);
+        letter-spacing: 0.3px;
+      }
+
+      .error-actions {
+        display: flex;
+        gap: var(--space-4);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* Bouton principal — or plein */
+      .error-btn-primary {
+        padding: 16px 48px;
+        background: #d4af37;
+        color: #0a0a0a;
+        border: 2px solid #d4af37;
+        border-radius: 0;
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .error-btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.12);
+        transition: left 0.4s ease;
+      }
+
+      .error-btn-primary:hover::before { left: 100%; }
+      .error-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.35);
+      }
+
+      /* Bouton secondaire — contour or */
+      .error-btn-secondary {
+        padding: 16px 48px;
+        background: transparent;
+        color: #d4af37;
+        border: 2px solid #d4af37;
+        border-radius: 0;
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .error-btn-secondary:hover {
+        background: #d4af37;
+        color: #0a0a0a;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.35);
+      }
+
+      /* ===== FOOTER (identique à index.html) ===== */
+      footer {
+        background: #0f0f0f;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        padding: var(--space-12) var(--space-8);
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-8);
+        margin-bottom: var(--space-8);
+      }
+
+      .footer-section h4 {
+        font-family: var(--font-display);
+        color: #d4af37;
+        margin-bottom: var(--space-4);
+        letter-spacing: 2px;
+      }
+
+      .footer-section a {
+        display: block;
+        color: rgba(245, 245, 240, 0.7);
+        text-decoration: none;
+        margin-bottom: var(--space-2);
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding-left: 0;
+      }
+
+      .footer-section a:hover {
+        color: #d4af37;
+        padding-left: 7px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        border-top: 1px solid rgba(212, 175, 55, 0.1);
+        padding-top: var(--space-6);
+        color: rgba(245, 245, 240, 0.5);
+        font-size: 13px;
+      }
+
+      /* ===== REVEAL (cohérent avec index.html) ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.78s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          transform 0.78s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+      /* ===== PAGE FADE-IN ===== */
+      @keyframes bodyFadeIn { from { opacity: 0; } to { opacity: 1; } }
+      body { animation: bodyFadeIn 0.5s ease both; }
+
+      html { scroll-behavior: smooth; }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .nav-links { gap: var(--space-3); }
+        .nav-link { font-size: 11px; }
+
+        .error-btn-primary,
+        .error-btn-secondary { padding: 14px 32px; font-size: 12px; }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links { display: none; }
+
+        .nav-logo-img { height: 34px; width: 34px; }
+        .nav-logo-text { font-size: 12px; letter-spacing: 2px; }
+        .nav-logo-separator { display: none; }
+        .nav-logo-tagline { display: none; }
+        .nav-logo { gap: 8px; }
+
+        .error-actions { flex-direction: column; align-items: center; }
+        .error-btn-primary,
+        .error-btn-secondary { width: 100%; max-width: 320px; text-align: center; }
+      }
+    </style>
+  </head>
+
+  <body style="background: #0a0a0a; color: #f5f5f0; overflow-x: hidden">
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <img
+            src="assets/logo/logo.jpg"
+            alt="Chedoudoue Store"
+            class="nav-logo-img"
+          />
+          <div class="nav-logo-separator"></div>
+          <div class="nav-logo-brand">
+            <span class="nav-logo-text">CHEDOUDOUE STORE</span>
+            <span class="nav-logo-tagline">La Boutique de L'élégance</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Accueil</a>
+          <a href="pages/shop.html" class="nav-link">Boutique</a>
+          <a href="pages/collections.html" class="nav-link">Collections</a>
+          <a href="pages/contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="pages/cart.html" class="nav-cart" title="Panier">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 11V7a4 4 0 0 0-8 0v4"/>
+              <path d="M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span class="cart-badge" id="cart-count">0</span>
+          </a>
+          <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="nav-mobile-menu" id="nav-mobile-menu">
+        <a href="index.html" class="nav-mobile-link">Accueil</a>
+        <a href="pages/shop.html" class="nav-mobile-link">Boutique</a>
+        <a href="pages/collections.html" class="nav-mobile-link">Collections</a>
+        <a href="pages/contact.html" class="nav-mobile-link">Contact</a>
+      </div>
+    </nav>
+
+    <!-- ===== PAGE 404 ===== -->
+    <main class="error-page">
+      <div class="error-container">
+
+        <!-- Chiffre 404 flottant -->
+        <div class="error-code animate-float" aria-hidden="true">404</div>
+
+        <!-- Séparateur doré -->
+        <div class="error-separator"></div>
+
+        <!-- Titre -->
+        <h1 class="error-title reveal">Page Introuvable</h1>
+
+        <!-- Sous-titre -->
+        <p class="error-subtitle reveal delay-1">
+          Cette page s'est égarée dans l'univers du luxe.<br />
+          Elle n'existe pas, a été déplacée, ou le lien est brisé.
+        </p>
+
+        <!-- Actions -->
+        <div class="error-actions reveal delay-2">
+          <a href="index.html" class="error-btn-primary">
+            Retour à l'Accueil
+          </a>
+          <a href="pages/shop.html" class="error-btn-secondary">
+            Explorer la Boutique
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>CHEDOUDOUE STORE</h4>
+          <p style="color: rgba(245, 245, 240, 0.6); font-size: 14px">
+            La splendeur de l'élégance intemporelle. Depuis 2016, nous créons
+            les plus beaux objets de luxe.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Boutique</h4>
+          <a href="pages/shop.html">Tous les Produits</a>
+          <a href="pages/shop.html?category=bijoux">Bijoux</a>
+          <a href="pages/shop.html?category=parfums">Parfums</a>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <a href="pages/contact.html">Contact</a>
+          <a href="pages/livraison-retours.html">Livraison &amp; Retours</a>
+        </div>
+        <div class="footer-section">
+          <h4>Entreprise</h4>
+          <a href="pages/a-propos.html">À Propos</a>
+          <a href="pages/politique-confidentialite.html">Politique de Confidentialité</a>
+          <a href="pages/mentions-legales.html">Mentions Légales</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 CHEDOUDOUE STORE. Tous droits réservés.
+          <span style="color: #d4af37">✨</span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="assets/js/currency.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script>
+      // ── Navbar sticky ────────────────────────────────────────────────────────
+      window.addEventListener('scroll', function () {
+        var navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // ── Badge panier ─────────────────────────────────────────────────────────
+      document.getElementById('cart-count').textContent = cart.getCartItems().length;
+
+      // ── Scroll reveal pour titre, sous-titre et boutons ─────────────────────
+      (function () {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          obs.observe(el);
+        });
+      })();
+    </script>
+    <script src="assets/js/nav.js"></script>
+  </body>
+</html>
