@@ -1,302 +1,396 @@
 /* ==========================================================================
-   VISIORA — Responsive (tablet & mobile)
+   CHEDOUDOUE STORE — Responsive CSS
+   Breakpoints : 1200 | 992 | 768 | 480
    ========================================================================== */
 
+/* ── 0. Base : empêche le scroll horizontal sur tous les appareils ── */
+html { overflow-x: hidden; }
+body { overflow-x: hidden; max-width: 100%; }
+img, video, iframe, svg { max-width: 100%; }
+
+/* ── 1. Hamburger button (caché sur desktop, affiché à 768 px) ── */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+  order: 99;
+}
+
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #d4af37;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  transform-origin: center;
+}
+
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; width: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── 2. Mobile menu panel ── */
+.nav-mobile-menu {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  background: rgba(10, 10, 10, 0.98);
+  border-top: 1px solid rgba(212, 175, 55, 0.12);
+  padding: 8px 0 16px;
+}
+
+@keyframes menuSlideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-mobile-menu.open {
+  display: flex;
+  animation: menuSlideDown 0.22s ease;
+}
+
+.nav-mobile-link {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(245, 245, 240, 0.7);
+  text-decoration: none;
+  padding: 14px 28px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+  transition: color 0.25s ease, background 0.25s ease, padding-left 0.25s ease;
+}
+
+.nav-mobile-link:last-child { border-bottom: none; }
+
+.nav-mobile-link:hover,
+.nav-mobile-link.active {
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.04);
+  padding-left: 36px;
+}
+
+/* ── 3. 1200 px ── */
 @media (max-width: 1200px) {
-  .product-grid,
-  .products-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .categories-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .footer-cols {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 28px !important;
   }
 }
 
-@media (max-width: 1024px) {
-  :root {
-    --text-7xl: 3.5rem;
-    --text-6xl: 3rem;
-    --text-5xl: 2.5rem;
-    --sidebar-width: 16rem;
-  }
-
-  .hero__grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .hero__copy {
-    order: 1;
-  }
-
-  .hero__visual {
-    order: 0;
-  }
-
-  .hero__aside {
-    order: 2;
-    align-items: center;
-  }
-
-  .hero__text {
-    margin-inline: auto;
-  }
-
-  .hero__title-overlay {
-    top: 10%;
-  }
-
-  .shop-layout {
-    grid-template-columns: 1fr;
+/* ── 4. 992 px — tablettes ── */
+@media (max-width: 992px) {
+  .shop-container {
+    grid-template-columns: 1fr !important;
   }
 
   .filters-sidebar {
-    position: static;
-    display: none;
+    position: static !important;
   }
 
-  .filters-sidebar.is-drawer-open {
-    display: block;
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-overlay);
-    padding: var(--space-6);
-    padding-top: calc(var(--header-height) + var(--space-4));
-    background: rgba(232, 242, 255, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    overflow-y: auto;
+  .cart-layout {
+    grid-template-columns: 1fr !important;
   }
 
-  .filters-sidebar.is-drawer-open .sidebar-card {
-    max-width: 24rem;
-    margin-inline: auto;
+  .cart-summary {
+    position: static !important;
+    top: auto !important;
   }
 
-  .cart-layout,
-  .checkout-layout,
-  .product-detail {
-    grid-template-columns: 1fr;
+  .checkout-main {
+    grid-template-columns: 1fr !important;
   }
 
-  .product-info {
-    position: static;
-  }
-
-  .about-grid,
-  .contact-grid {
-    grid-template-columns: 1fr;
+  .summary-card {
+    position: static !important;
+    order: -1;
   }
 }
 
+/* ── 5. 768 px — point de rupture mobile principal ── */
 @media (max-width: 768px) {
-  :root {
-    --header-height: 4rem;
-    --space-16: 3rem;
-    --space-20: 4rem;
+
+  /* ─ Navigation ─ */
+  .nav-links    { display: none !important; }
+  .nav-burger   { display: flex !important; }
+
+  .nav-logo-tagline  { display: none !important; }
+  .nav-logo-separator { display: none !important; }
+  .nav-logo          { gap: 8px !important; }
+  .nav-container     { padding: 0 16px !important; }
+
+  /* ─ Filigrane ─ */
+  body::before {
+    width: 280px !important;
+    height: 280px !important;
   }
 
-  .container {
-    padding-inline: var(--space-4);
-  }
-
-  .site-header__inner {
-    padding-inline: var(--space-4);
-    gap: var(--space-3);
-  }
-
-  .nav-glass {
-    padding-inline: var(--space-2);
-    gap: var(--space-3);
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .nav-container {
-    padding-inline: var(--space-4);
-  }
-
-  .navbar .mobile-toggle {
-    order: -1;
-  }
-
-  .navbar .brand-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    align-items: center;
-  }
-
-  .navbar .nav-actions {
-    margin-left: auto;
-  }
-
-  .mobile-toggle {
-    display: inline-flex;
-  }
-
-  .nav-actions {
-    gap: 0;
-  }
-
-  .nav-actions .icon-btn:nth-child(1),
-  .nav-actions .icon-btn:nth-child(2) {
-    display: none;
-  }
-
-  .product-grid,
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .categories-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .product-card__actions {
-    grid-template-columns: 1fr;
-  }
-
-  .search-strip__row {
-    border-radius: var(--radius-xl);
-  }
-
-  .search-strip__row .btn {
+  /* ─ Hero principal (index) ─ */
+  .hero-cinema      { min-height: 520px; }
+  .hero-title       { font-size: clamp(1.6rem, 7vw, 2.6rem) !important; }
+  .hero-subtitle    { font-size: 0.95rem !important; }
+  .hero-ctas {
+    flex-direction: column !important;
+    gap: 12px !important;
     width: 100%;
+    padding: 0 20px !important;
+    align-items: stretch !important;
+  }
+  .btn-primary-hero,
+  .btn-secondary-hero {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 14px 20px !important;
   }
 
-  .form-grid {
-    grid-template-columns: 1fr;
+  /* ─ Grilles produits ─ */
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+    gap: 14px !important;
   }
 
+  /* ─ Espacement sections ─ */
+  .section-padding  { padding: 48px 16px !important; }
+
+  /* ─ Panier ─ */
+  .cart-layout        { grid-template-columns: 1fr !important; }
+  .cart-summary       { position: static !important; top: auto !important; }
   .cart-item {
-    grid-template-columns: 5rem minmax(0, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: 90px 1fr !important;
+    grid-template-rows: auto auto auto !important;
+    gap: 10px !important;
+  }
+  .cart-item-image {
+    width: 90px !important;
+    height: 90px !important;
+    grid-row: span 3 !important;
+  }
+  .cart-item-quantity,
+  .cart-item-total { justify-self: start !important; }
+
+  /* ─ Footer index / shop (auto-fit) ─ */
+  .footer-content {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
   }
 
-  .cart-item__img {
-    grid-row: span 2;
-    width: 5rem;
-    height: 5rem;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
+  /* ─ Footer checkout-style (.fcol) ─ */
+  .footer-cols {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
   }
 
   .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
   }
 
-  .float-tag {
-    display: none;
+  /* ─ Page header (shop, etc.) ─ */
+  .page-header { padding: 90px 16px 32px !important; }
+
+  /* ─ Contact ─ */
+  .social-links { flex-wrap: wrap !important; gap: 10px !important; }
+
+  /* ─ Info pages (livraison, a-propos, etc.) ─ */
+  .info-main  { padding: 32px 16px !important; }
+  .info-cards-grid { grid-template-columns: 1fr !important; }
+
+  /* ─ Liens réseaux sociaux ─ */
+  .social-links { gap: 10px !important; }
+}
+
+/* ── 6. 480 px — petits mobiles ── */
+@media (max-width: 480px) {
+
+  /* ─ Navigation ─ */
+  .nav-logo-img  { width: 34px !important; height: 34px !important; }
+  .nav-logo-text { font-size: 12px !important; letter-spacing: 2px !important; }
+  .nav-container { padding: 0 12px !important; height: 54px !important; }
+
+  /* ─ Filigrane ─ */
+  body::before {
+    width: 200px !important;
+    height: 200px !important;
   }
 
-  .watermark {
-    font-size: clamp(4rem, 28vw, 10rem);
-    top: 48%;
+  /* ─ Hero ─ */
+  .hero-title  { font-size: clamp(1.4rem, 8vw, 2rem) !important; }
+  .hero-ctas   { padding: 0 12px !important; }
+
+  /* ─ Grilles produits ─ */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
   }
 
-  .page-header {
-    padding-top: calc(var(--header-height) + var(--space-6));
+  /* ─ Footer — 1 seule colonne ─ */
+  .footer-content { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .footer-cols    { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+  /* ─ Panier ─ */
+  .cart-item {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
   }
-}
-
-@media (min-width: 769px) {
-  .mobile-menu-overlay {
-    display: none !important;
+  .cart-item-image {
+    width: 100% !important;
+    height: 160px !important;
+    grid-row: auto !important;
   }
+
+  /* ─ Shop ─ */
+  .shop-container { padding: 20px 12px !important; }
+
+  /* ─ Checkout ─ */
+  .checkout-main { padding: 24px 12px 48px !important; }
 }
 
-/* --- Mobile full-screen nav (class hooks for JS) --- */
-.mobile-menu-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: calc(var(--z-header) + 5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-6);
-  padding: var(--space-8);
-  background: rgba(238, 246, 255, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transform: translateY(-100%);
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    transform var(--duration-normal) var(--ease-out),
-    opacity var(--duration-normal) var(--ease-out),
-    visibility var(--duration-normal) var(--ease-out);
-}
-
-.mobile-menu-overlay.is-open,
-.mobile-menu-overlay.active {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-}
-
-.mobile-menu-overlay__links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.mobile-menu-overlay__links a {
-  font-family: var(--font-display);
-  font-size: var(--text-2xl);
-  font-weight: 600;
-  color: var(--color-text-secondary);
-}
-
-.mobile-menu-overlay__links a.is-active {
-  color: var(--color-text-primary);
-}
-
-.mobile-menu-overlay__close {
-  position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: var(--radius-full);
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid var(--glass-border-subtle);
-  color: var(--color-text-primary);
-}
-
-/* --- Shop filter toggle (optional) --- */
-.filter-toggle {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-  .filter-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-4);
-  }
-}
-
-/* --- Touch targets --- */
+/* ── 7. Cibles tactiles (pointer: coarse) ── */
 @media (pointer: coarse) {
-  .icon-btn,
-  .btn {
-    min-height: 2.75rem;
+  .product-btn,
+  .btn-primary-hero,
+  .btn-secondary-hero,
+  .nav-mobile-link,
+  .social-link,
+  .nav-link {
+    min-height: 44px;
+  }
+
+  .nav-burger {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .nav-cart {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qty-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* ==========================================================================
+   8. Navbar adaptative au scroll
+   La classe .nav-adaptive est posée par assets/js/nav.js sur la navbar fixe.
+   Elle sert de renfort de spécificité : les <style> inline des pages sont
+   chargés APRÈS ce fichier, donc `nav.is-scrolled` (0,1,1) perdrait contre
+   le `nav.scrolled` inline. `nav.nav-adaptive.is-scrolled` (0,2,1) gagne.
+   En haut de page (aucune classe d'état) l'apparence d'origine est intacte.
+   ========================================================================== */
+
+/* !important : plusieurs pages posent une transition au niveau ID
+   (`nav#navbar`, `nav#col-nav`) qui écraserait celle du transform. */
+nav.nav-adaptive {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    background 0.35s ease,
+    backdrop-filter 0.35s ease,
+    -webkit-backdrop-filter 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease !important;
+  will-change: transform;
+}
+
+nav.nav-adaptive .nav-container,
+nav.nav-adaptive .navbar-content {
+  transition: height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+nav.nav-adaptive .nav-logo-img,
+nav.nav-adaptive .logo-img {
+  transition:
+    height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    width 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+nav.nav-adaptive .nav-logo-tagline {
+  overflow: hidden;
+  transition:
+    opacity 0.3s ease,
+    max-height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ─ État compact : dès que l'utilisateur quitte le haut de page ─
+   !important sur background / box-shadow / border : produits.html pose
+   `background: … !important` et `box-shadow: none !important` sur
+   `nav.navbar`, et contact.html un `nav#navbar.scrolled` au niveau ID. */
+nav.nav-adaptive.is-scrolled {
+  background: rgba(10, 10, 10, 0.86) !important;
+  backdrop-filter: blur(18px) saturate(1.25) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.25) !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28) !important;
+  box-shadow:
+    0 1px 0 rgba(212, 175, 55, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.45) !important;
+}
+
+nav.nav-adaptive.is-scrolled .nav-container,
+nav.nav-adaptive.is-scrolled .navbar-content {
+  height: 52px;
+}
+
+nav.nav-adaptive.is-scrolled .nav-logo-img,
+nav.nav-adaptive.is-scrolled .logo-img {
+  height: 34px;
+  width: 34px;
+}
+
+nav.nav-adaptive.is-scrolled .nav-logo-tagline {
+  opacity: 0;
+  max-height: 0;
+}
+
+/* ─ Masquage au scroll vers le bas ─ */
+nav.nav-adaptive.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* ─ Mobile : compaction alignée sur les 54px du breakpoint 480 ─ */
+@media (max-width: 768px) {
+  nav.nav-adaptive.is-scrolled .nav-container,
+  nav.nav-adaptive.is-scrolled .navbar-content {
+    height: 50px !important;
+  }
+
+  nav.nav-adaptive.is-scrolled .nav-logo-img,
+  nav.nav-adaptive.is-scrolled .logo-img {
+    height: 30px !important;
+    width: 30px !important;
+  }
+}
+
+/* ─ Accessibilité : pas d'animation ni de masquage si mouvement réduit ─ */
+@media (prefers-reduced-motion: reduce) {
+  nav.nav-adaptive,
+  nav.nav-adaptive .nav-container,
+  nav.nav-adaptive .navbar-content,
+  nav.nav-adaptive .nav-logo-img,
+  nav.nav-adaptive .logo-img,
+  nav.nav-adaptive .nav-logo-tagline {
+    transition: none !important;
+  }
+
+  nav.nav-adaptive.is-hidden {
+    transform: none;
   }
 }

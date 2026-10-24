@@ -1,4 +1,4 @@
-# ✨ AMÉLIRATIONS APPORTÉES AU SITE CHEDOUDOUE
+# ✨ AMÉLIORATIONS APPORTÉES AU SITE CHEDOUDOUE
 
 ## 🎯 Objectif
 Transformer le site CHEDOUDOUE en un **véritable site e-commerce de luxe premium** comparable aux grandes marques Shopify, entièrement en français.
@@ -252,3 +252,37 @@ Le site est maintenant **prêt à être utilisé** :
 Vous pouvez le lancer avec : `python -m http.server 8000`
 
 Puis accédez à : `http://localhost:8000/`
+
+---
+
+## 📦 AMÉLIORATIONS RÉCENTES (2026)
+
+### Section Éditoriale Split
+- Remplacement de la section "L'Excellence Chedoudoue" (4 cartes) par un **split layout éditorial premium**
+- Image HD (`vetements-femme hd (2).jpg`) en pleine hauteur côté droit
+- Texte de collection côté gauche avec animations séquentielles au scroll
+- Révélation cinématique : eyebrow → trait doré → titre → description → signature
+
+### Produits HD — "Les Collections Phares"
+- Ajout de 6 nouveaux produits HD avec `"image_folder": "hd"` dans `products.json` :
+  - `bijou-12` — Bracelet Or Fin Diamant (`bijou hd (2).jpg`)
+  - `parfum-12` — Absolu Noir Signature (`parfum hd (1).jpg`)
+  - `sandale-10` — Sandale Or Prestige Signature (`sandales hd (1).jpg`)
+  - `voyage-10` — Valise Prestige Signature Dorée (`valises hd (1).jpg`)
+  - `femme-12` — position 5, inchangée (image existante)
+  - `homme-12` — Costume Signature Prestige Or (`vetements-homme hd (1).jpg`)
+- La section "Les Collections Phares" affiche désormais 6 images HD (une par catégorie)
+- Ordre d'affichage déterminé par l'ordre d'insertion dans le JSON via `getFeaturedProducts()`
+
+### Animations de Scroll
+- **Cartes produits** : animation slide-up + fade au scroll (stagger 85 ms par carte)
+- **Newsletter** : formulaire fade-in avec délai de 160 ms après le titre
+- **Footer** : 4 colonnes en cascade (0 / 90 / 180 / 270 ms), puis ligne copyright (360 ms)
+- **Titres de sections** : déjà animés, comportement inchangé
+- `prefers-reduced-motion` respecté — toutes les animations sont neutralisées automatiquement
+
+### Fichiers de Support
+- `START.bat` : ajout de `cd /d "%~dp0"` pour fiabilité, mention de `verify.py`
+- `verify.py` : refonte complète — vérifie toutes les pages, CSS, JS, logo, images HD,
+  et croise les images référencées dans `products.json` avec les fichiers sur disque
+- `GUIDE.md` : mise à jour de la structure, des statistiques et des fonctionnalités

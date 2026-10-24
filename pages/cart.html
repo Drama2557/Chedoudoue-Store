@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panier | Chedoudoue - Maison de Prestige</title>
+    <title>Panier | Chedoudoue Store - Maison de Prestige</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -265,88 +265,192 @@
           justify-self: flex-start;
         }
       }
+
+      /* ===== NAVBAR ===== */
+      .cart-nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: rgba(10, 10, 10, 0.92);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      }
+
+      .cart-nav .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--space-6);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+      }
+
+      .cart-nav .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .cart-nav .nav-logo-img {
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 1.5px solid rgba(212, 175, 55, 0.5);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.18);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+
+      .cart-nav .nav-logo:hover .nav-logo-img {
+        border-color: #d4af37;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+      }
+
+      .cart-nav .nav-logo-separator {
+        width: 1px;
+        height: 24px;
+        background: rgba(212, 175, 55, 0.35);
+        flex-shrink: 0;
+      }
+
+      .cart-nav .nav-logo-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .cart-nav .nav-logo-text {
+        font-family: var(--font-display);
+        font-size: 15px;
+        font-weight: 700;
+        color: #d4af37;
+        letter-spacing: 3px;
+        line-height: 1;
+        transition: all 0.3s ease;
+      }
+
+      .cart-nav .nav-logo:hover .nav-logo-text {
+        color: #e8c84a;
+        text-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+      }
+
+      .cart-nav .nav-logo-tagline {
+        font-family: var(--font-editorial);
+        font-size: 9.5px;
+        font-weight: 400;
+        font-style: italic;
+        color: rgba(212, 175, 55, 0.65);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+
+      .cart-nav .nav-links {
+        display: flex;
+        gap: var(--space-6);
+        align-items: center;
+      }
+
+      .cart-nav .nav-link {
+        font-family: var(--font-body);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #f5f5f0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .cart-nav .nav-link:hover { color: #d4af37; }
+
+      .cart-nav .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--space-5);
+      }
+
+      .cart-nav .nav-cart {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        text-decoration: none;
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #d4af37;
+        transition: all 0.3s ease;
+      }
+
+      .cart-nav .nav-cart:hover { opacity: 0.8; }
+
+      .cart-nav .cart-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 4px;
+        background: #d4af37;
+        color: #0a0a0a;
+        font-size: 10px;
+        font-weight: 700;
+        border-radius: 9px;
+      }
+
+      @media (max-width: 768px) {
+        .cart-nav .nav-links { display: none; }
+        .cart-nav .nav-logo-tagline { display: none; }
+        .cart-nav .nav-logo-separator { display: none; }
+      }
     </style>
   </head>
   <body>
     <!-- NAVBAR -->
-    <header
-      class="header-solid flex items-center"
-      style="position: sticky; top: 0; z-index: 100"
-    >
-      <div
-        class="container container--max flex justify-between items-center w-full"
-      >
-        <nav style="display: flex; gap: var(--space-6)">
-          <a
-            href="../index.html"
-            class="font-body text-xs text-upper tracking-wider fw-medium text-silver hover:text-gold"
-            style="text-decoration: none; transition: color 0.3s"
-            >Accueil</a
-          >
-          <a
-            href="shop.html"
-            class="font-body text-xs text-upper tracking-wider fw-medium text-silver hover:text-gold"
-            style="text-decoration: none; transition: color 0.3s"
-            >Boutique</a
-          >
-          <a
-            href="about.html"
-            class="font-body text-xs text-upper tracking-wider fw-medium text-silver hover:text-gold"
-            style="text-decoration: none; transition: color 0.3s"
-            >La Maison</a
-          >
-          <a
-            href="contact.html"
-            class="font-body text-xs text-upper tracking-wider fw-medium text-silver hover:text-gold"
-            style="text-decoration: none; transition: color 0.3s"
-            >Contact</a
-          >
-        </nav>
-
-        <a
-          href="../index.html"
-          class="font-display text-large text-gold tracking-widest text-upper"
-          style="
-            text-decoration: none;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-          "
-        >
-          Chedoudoue
+    <nav class="cart-nav">
+      <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+          <img src="../assets/logo/logo.jpg" alt="Chedoudoue Store" class="nav-logo-img" />
+          <div class="nav-logo-separator"></div>
+          <div class="nav-logo-brand">
+            <span class="nav-logo-text">CHEDOUDOUE STORE</span>
+            <span class="nav-logo-tagline">La Boutique de L'élégance</span>
+          </div>
         </a>
-
-        <div style="display: flex; gap: var(--space-4); align-items: center">
-          <a
-            href="cart.html"
-            class="font-body text-xs text-upper tracking-wider fw-medium text-gold"
-            style="text-decoration: none"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
-              ></path>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
-            Panier
+        <div class="nav-links">
+          <a href="../index.html" class="nav-link">Accueil</a>
+          <a href="shop.html" class="nav-link">Boutique</a>
+          <a href="collections.html" class="nav-link">Collections</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="cart.html" class="nav-cart">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 11V7a4 4 0 0 0-8 0v4"/><path d="M5 9h14l1 12H4L5 9z"/></svg> <span class="cart-badge cart-count">0</span>
           </a>
+          <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
         </div>
       </div>
-    </header>
+      <div class="nav-mobile-menu" id="nav-mobile-menu">
+        <a href="../index.html" class="nav-mobile-link">Accueil</a>
+        <a href="shop.html" class="nav-mobile-link">Boutique</a>
+        <a href="collections.html" class="nav-mobile-link">Collections</a>
+        <a href="contact.html" class="nav-mobile-link">Contact</a>
+      </div>
+    </nav>
 
     <!-- MAIN CONTENT -->
     <main
       style="
+        margin-top: 70px;
         min-height: 100vh;
         background: linear-gradient(
           180deg,
@@ -448,12 +552,12 @@
               <a href="#" style="color: inherit; text-decoration: none">CGV</a>
             </li>
             <li>
-              <a href="#" style="color: inherit; text-decoration: none"
+              <a href="mentions-legales.html" style="color: inherit; text-decoration: none"
                 >Mentions Légales</a
               >
             </li>
             <li>
-              <a href="#" style="color: inherit; text-decoration: none"
+              <a href="politique-confidentialite.html" style="color: inherit; text-decoration: none"
                 >Politique de Confidentialité</a
               >
             </li>
@@ -471,8 +575,11 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="../assets/js/currency.js"></script>
     <script src="../assets/js/products.js"></script>
+    <script src="../assets/js/storage.js"></script>
     <script src="../assets/js/cart.js"></script>
+    <script src="../assets/js/animations.js"></script>
 
     <script>
       async function initCart() {
@@ -483,5 +590,6 @@
 
       window.addEventListener("load", initCart);
     </script>
+    <script src="../assets/js/nav.js"></script>
   </body>
 </html>

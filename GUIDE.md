@@ -1,262 +1,250 @@
-# CHEDOUDOUE STORE - Site de Commerce Électronique Luxe Français
+# CHEDOUDOUE STORE — Guide du Projet
 
-## 📋 Description
+## Description
 
-CHEDOUDOUE STORE est un site e-commerce de **luxe haut de gamme** entièrement en **français**, conçu comme un véritable marketplace premium comparable aux grandes marques de mode sur Shopify.
+CHEDOUDOUE STORE est un site e-commerce de **luxe haut de gamme** entièrement en **français**, conçu comme un véritable marketplace premium comparable aux grandes marques de mode.
 
 Le site présente une **esthétique noire et or luxueuse**, avec animations fluides, typographies élégantes et une expérience utilisateur cinématographique.
 
-## 🎨 Design Features
+---
 
-- **Esthétique Premium** : Noir & Or (#0a0a0a + #D4AF37)
-- **Typographies Élégantes** : Cinzel, Cormorant Garamond, Montserrat
-- **Animations Fluides** : Hero slider auto-rotatif, hover effects 3D
-- **Glassmorphism Modern** : Effets de morphisme vitreux sur les éléments
-- **Responsive Mobile-First** : Adapté à tous les appareils
-
-## 📁 Structure du Projet
+## Structure du Projet
 
 ```
 Site Arena Test/
-├── index.html                    # Page d'accueil (nouvelle version premium)
+├── index.html                      # Page d'accueil premium
+├── START.bat                       # Lancement rapide (Windows)
+├── verify.py                       # Vérification de l'intégrité du projet
+├── GUIDE.md                        # Ce fichier
+├── IMPROVEMENTS.md                 # Journal des améliorations
+│
 ├── assets/
 │   ├── css/
-│   │   ├── theme.css            # Variables de couleurs et espacements
-│   │   ├── style.css            # Styles généraux
-│   │   ├── components.css       # Composants réutilisables
-│   │   ├── premium.css          # Styles premium luxe
-│   │   ├── animations.css       # Animations et transitions
-│   │   └── responsive.css       # Media queries mobiles
+│   │   ├── theme.css               # Variables globales (couleurs, espacements)
+│   │   ├── style.css               # Styles généraux
+│   │   ├── components.css          # Composants réutilisables
+│   │   ├── premium.css             # Styles luxe spécifiques
+│   │   ├── animations.css          # Animations et transitions
+│   │   ├── notifications.css       # Styles de notifications toast
+│   │   └── responsive.css          # Media queries mobiles
+│   │
 │   ├── js/
-│   │   ├── products.js          # Gestion du catalogue produits
-│   │   ├── cart.js              # Gestion du panier d'achat
-│   │   ├── main.js              # Initialisation principale
-│   │   ├── app.js               # Application JS
-│   │   ├── effects.js           # Effets et animations JS
-│   ├── images/                  # Toutes les images produits (62 images)
-│   │   ├── bijoux/              # 9 images de bijoux
-│   │   ├── lace-frontal/        # 7 images beauté/cheveux
-│   │   ├── parfums-unisex/      # 10 images de parfums
-│   │   ├── sandales-unisex/     # 8 images de sandales
-│   │   ├── valises-fille/       # 8 images de valises/voyage
-│   │   ├── vetements-femme/     # 10 images mode femme
-│   │   └── vetements-homme/     # 10 images mode homme
-│   └── data/
-│       └── products.json        # Catalogue complet de produits (62 articles)
+│   │   ├── currency.js             # Formatage des prix et devises
+│   │   ├── products.js             # Catalogue produits, filtres, rendu
+│   │   ├── cart.js                 # Panier (localStorage)
+│   │   ├── main.js                 # Initialisation navbar, loader
+│   │   ├── app.js                  # Point d'entrée de l'application
+│   │   └── effects.js              # Curseur personnalisé, scroll reveal, parallax
+│   │
+│   ├── data/
+│   │   └── products.json           # Catalogue complet (76 articles)
+│   │
+│   ├── logo/
+│   │   └── logo.jpg                # Logo de la marque
+│   │
+│   └── images/
+│       ├── bijoux/                 # Images bijoux standard
+│       ├── lace-frontal/           # Images beauté / cheveux standard
+│       ├── parfums-unisex/         # Images parfums standard
+│       ├── sandales-unisex/        # Images sandales standard
+│       ├── valises-fille/          # Images voyage standard
+│       ├── vetements-femme/        # Images mode femme standard
+│       ├── vetements-homme/        # Images mode homme standard
+│       └── hd/                     # Images haute résolution (hero, éditoriales)
+│
 └── pages/
-    ├── shop.html                # Boutique avec filtrage par catégorie
-    ├── produits.html            # Fiche produit détaillée
-    ├── cart.html                # Panier d'achat
-    ├── checkout.html            # Paiement (à compléter)
-    ├── about.html               # À Propos (La Maison)
-    └── contact.html             # Contact et Support
-
+    ├── shop.html                   # Boutique avec filtres et tri
+    ├── produits.html               # Fiche produit détaillée
+    ├── cart.html                   # Panier d'achat
+    ├── checkout.html               # Tunnel de paiement
+    ├── confirmation.html           # Confirmation de commande
+    ├── collections.html            # Page des collections
+    ├── about.html                  # La Maison (À Propos)
+    └── contact.html                # Contact et Support
 ```
-
-## 🛍️ Catégories de Produits (62 Articles)
-
-### 1. **Bijoux de Luxe** (9 produits)
-- Colliers, bagues, boucles d'oreilles, bracelets, montres
-- Matériaux : Or 18K, diamants, saphir, émeraude
-
-### 2. **Beauté & Cheveux** (7 produits)
-- Sérums, masques, shampooings, conditionneurs
-- Ingrédients : Or pur, argan, miel, protéines de soie
-
-### 3. **Parfums Unisexes** (10 produits)
-- Fragrances exclusives pour tous
-- Formats : 50ml, 100ml
-
-### 4. **Sandales Unisexes** (8 produits)
-- Chaussures premium confortables et élégantes
-
-### 5. **Valises et Voyage** (8 produits)
-- Bagages de luxe pour aventures premium
-
-### 6. **Mode Femme** (10 produits)
-- Vêtements et accessoires féminins haut de gamme
-
-### 7. **Mode Homme** (10 produits)
-- Collection masculine sophistiquée et élégante
-
-## 🚀 Pages Créées
-
-### 1. **index.html** - Page d'Accueil Premium
-- ✅ Hero slider cinématique (auto-rotatif)
-- ✅ Section "Nos Univers de Luxe" avec images de catégories
-- ✅ Produits en vedette avec animations
-- ✅ Best-sellers showcase
-- ✅ Newsletter subscription
-- ✅ Footer premium avec liens
-- ✅ Navbar sticky avec transparence
-
-### 2. **pages/shop.html** - La Boutique
-- ✅ Grille produits responsive (4 colonnes desktop)
-- ✅ Filtres par catégorie
-- ✅ Filtres par prix (0-100€, 100-500€, 500-1000€, 1000€+)
-- ✅ Filtres par status (Nouveautés, Best-sellers)
-- ✅ Tri (Prix croissant/décroissant, Plus récent, Meilleure note)
-- ✅ Cartes produits avec hover effects
-- ✅ Badges de réduction et "NOUVEAU"
-- ✅ Quick add-to-cart
-
-### 3. **pages/produits.html** - Fiche Produit Détaillée
-- ✅ Grande image produit avec thumbnails
-- ✅ Informations complètes (matière, poids, catégorie)
-- ✅ Notes et avis (étoiles)
-- ✅ Sélecteur de quantité
-- ✅ Bouton "Ajouter au panier"
-- ✅ Bouton favoris/wishlist
-
-### 4. **pages/cart.html** - Panier d'Achat
-- ✅ Liste des articles avec images
-- ✅ Contrôle de quantité (+/-)
-- ✅ Suppression d'articles
-- ✅ Résumé du panier (sous-total, livraison, taxes)
-- ✅ Bouton checkout
-- ✅ Panier vide message
-
-### 5. **pages/about.html** - La Maison (À Propos)
-- ✅ Histoire de la marque CHEDOUDOUE
-- ✅ Valeurs (Excellence, Prestige, Créativité, etc.)
-- ✅ Engagement et responsabilité
-- ✅ Showcase des 7 collections
-
-### 6. **pages/contact.html** - Support Client
-- ✅ Formulaire de contact complet
-- ✅ Coordonnées (adresse, téléphone, email)
-- ✅ Chat en direct
-- ✅ Sauvegarde des messages en localStorage
-
-## 🔧 Fonctionnalités Techniques
-
-### Navigation
-- ✅ Navbar sticky avec effet blur (glassmorphism)
-- ✅ Scroll effect (background opacity change)
-- ✅ Compteur panier dynamique
-- ✅ Liens actifs avec underline animé
-
-### Panier
-- ✅ Sauvegarde persistante en localStorage
-- ✅ Mise à jour dynamique du compteur
-- ✅ Ajout/suppression/modification de quantité
-- ✅ Calcul automatique des totaux
-
-### Produits
-- ✅ Chargement depuis products.json
-- ✅ Filtrage par catégorie, prix, status
-- ✅ Tri par prix et notation
-- ✅ Lazy loading des images
-- ✅ Badges automatiques (NOUVEAU, réductions %)
-
-### Images
-- ✅ 62 images intégrées et utilisées
-- ✅ Chemins dynamiques selon catégorie
-- ✅ URL-encoded spaces (%20)
-- ✅ Responsive image handling
-
-## 📱 Responsive Design
-
-- **Desktop (> 768px)** : Grille 4 colonnes, fullscreen layout
-- **Tablet (480px-768px)** : Grille 2-3 colonnes
-- **Mobile (< 480px)** : Grille 1 colonne, menu collapse
-
-## 🎯 Buttons Fonctionnels
-
-| Bouton | Fonction | ✅ |
-|--------|----------|-----|
-| ACCUEIL | Retour à index.html | ✓ |
-| BOUTIQUE | Vers shop.html | ✓ |
-| Collections | Vers index.html#collections | ✓ |
-| LA MAISON | Vers about.html | ✓ |
-| CONTACT | Vers contact.html | ✓ |
-| Ajouter au panier | Ajoute produit, update badge | ✓ |
-| Panier (🛍️) | Vers cart.html | ✓ |
-| Filtres | Filtrent produits en direct | ✓ |
-| Tri | Trie les produits | ✓ |
-
-## 💾 Données Stockées
-
-### localStorage
-- `chedoudoue_cart` : Articles du panier (JSON)
-- `chedoudoue_contacts` : Messages de contact (JSON)
-- `chedoudoue_wishlist` : Articles favoris (JSON)
-
-## 🎨 Couleurs Principal
-
-| Couleur | Code | Usage |
-|---------|------|-------|
-| Or Luxe | #D4AF37 | Titres, accents, CTA |
-| Noir Profond | #0a0a0a | Fond principal |
-| Ivoire | #f5f5f0 | Texte principal |
-| Gris Graphite | #1a1a1a | Accents secondaires |
-
-## 🔤 Typographies
-
-| Font | Usage | Weight |
-|------|-------|--------|
-| Cinzel | Titres, headings | 400, 600, 700, 900 |
-| Cormorant Garamond | Editorial, sous-titres | 400, 500, 600, 700 |
-| Montserrat | Corps, UI | 300, 400, 500, 600, 700 |
-
-## 🚀 Démarrage Local
-
-```bash
-# Ouvrir un terminal dans le dossier du projet
-cd "Site Arena Test"
-
-# Lancer un serveur local
-python -m http.server 8000
-
-# Accéder au site
-# http://localhost:8000/
-```
-
-## 📝 Notes Importantes
-
-### Images
-- ✅ Tous les noms de fichiers ont des espaces : `bijou (1).jpg`
-- ✅ Les images sont URL-encodées dans les requêtes
-- ✅ Les chemins sont dynamiques selon getCategoryFolder()
-- ✅ Aucune image n'est inutilisée (62/62 intégrées)
-
-### Navigateurs Compatibles
-- Chrome/Edge (+ récent)
-- Firefox (+ récent)
-- Safari (+ récent)
-- Mobile browsers (iOS Safari, Chrome Android)
-
-### Performance
-- Lazy loading des images
-- CSS minifiés
-- JavaScript optimisé
-- Pas de requêtes serveur nécessaires
-
-### Sécurité
-- Pas de données sensibles en localStorage
-- XSS Protection via textContent
-- CSRF non nécessaire (site statique)
-
-## 🎯 Améliorations Futures
-
-- [ ] Page checkout complet avec validation
-- [ ] Page de confirmation de commande
-- [ ] Système de coupons/codes promo
-- [ ] Avis clients avec photos
-- [ ] Intégration paiement (Stripe/PayPal)
-- [ ] Compte client et historique
-- [ ] Comparateur de produits
-- [ ] Search avancée
-- [ ] Recommandations AI
-- [ ] Mode sombre toggle
-
-## 📧 Support
-
-Pour toute question ou support :
-- Email : contact@chedoudoue.fr
-- Tél : +33 (0)1 23 45 67 89
-- Formulaire : pages/contact.html
 
 ---
 
-**CHEDOUDOUE STORE** © 2026 - Luxe Français Premium ✨
+## Pages
+
+### `index.html` — Page d'Accueil
+- Hero slider cinématique (images HD en rotation automatique, Ken Burns)
+- Section **"Les Collections Phares"** — 6 produits vedettes chargés dynamiquement
+- Section **éditoriale split** — visuel HD grand format avec texte de collection
+- Newsletter
+- Footer premium 4 colonnes
+- Navbar sticky avec glassmorphism
+
+### `pages/shop.html` — La Boutique
+- Grille produits responsive (4 col → 2 col → 1 col)
+- Filtres fonctionnels : catégorie, tranche de prix, status (nouveautés / best-sellers)
+- Tri : prix croissant/décroissant, meilleure note, plus récent
+- Compteur de produits dynamique
+
+### `pages/produits.html` — Fiche Produit
+- Grande image produit
+- Informations complètes : matière, poids, catégorie, disponibilité
+- Notation par étoiles et nombre d'avis
+- Sélecteur de quantité, ajout au panier, ajout aux favoris
+
+### `pages/cart.html` — Panier
+- Liste des articles avec images et quantités
+- Contrôle +/− et suppression par article
+- Résumé automatique : sous-total, livraison (gratuite > 100 €), taxes 20 %, total
+- Message "panier vide" avec lien vers la boutique
+
+### `pages/checkout.html` — Paiement
+- Formulaire de commande
+- Résumé de commande
+
+### `pages/confirmation.html` — Confirmation
+- Page de confirmation après commande
+
+### `pages/collections.html` — Collections
+- Présentation des univers de la marque
+
+### `pages/about.html` — La Maison
+- Histoire de la marque
+- Valeurs et engagements
+- Showcase des collections
+
+### `pages/contact.html` — Contact
+- Formulaire de contact (messages sauvegardés en localStorage)
+- Coordonnées, chat en direct
+
+---
+
+## Fonctionnalités Techniques
+
+### Panier
+- Persistance `localStorage` (clé `chedoudoue_cart`)
+- Ajout, suppression, modification de quantité
+- Compteur dynamique dans la navbar
+- Calcul automatique des totaux
+
+### Produits
+- Chargement depuis `products.json` via `fetch()`
+- Filtrage par catégorie, prix, status
+- Tri par prix, note, date
+- Lazy loading des images
+- Badges automatiques (NOUVEAU, -X%)
+
+### Images
+- Images standard : `assets/images/{catégorie}/{fichier}`
+- Images HD : `assets/images/hd/{fichier}` (identifiées par `"image_folder": "hd"` dans le JSON)
+- Le champ `image_folder` dans le JSON surclasse le dossier par défaut de la catégorie
+- Spaces dans les noms de fichiers gérés nativement (pas d'encodage URL nécessaire côté JSON)
+
+### Animations de scroll
+- `.reveal` / `.is-visible` via IntersectionObserver (titres, sous-titres, formulaire, footer)
+- Stagger sur les cartes produits au scroll (fade + slide-up)
+- Section éditoriale : animation séquentielle (eyebrow → ligne → titre → description → signature)
+- `prefers-reduced-motion` respecté dans `animations.css`
+
+---
+
+## Design
+
+### Palette
+| Couleur       | Code      | Usage                      |
+|---------------|-----------|----------------------------|
+| Or Luxe       | `#d4af37` | Titres, accents, CTA       |
+| Noir Profond  | `#0a0a0a` | Fond principal             |
+| Ivoire        | `#f5f5f0` | Texte principal            |
+| Gris Graphite | `#1a1a1a` | Accents secondaires        |
+
+### Typographies
+| Police              | Variable CSS           | Usage             |
+|---------------------|------------------------|-------------------|
+| Cinzel              | `--font-display`       | Titres, headings  |
+| Cormorant Garamond  | `--font-editorial`     | Éditorial, sous-titres |
+| Montserrat          | `--font-body`          | Corps, interface  |
+
+---
+
+## Responsive
+
+| Breakpoint         | Comportement                            |
+|--------------------|-----------------------------------------|
+| Desktop (> 768px)  | Grille 4 colonnes, layout plein écran   |
+| Tablette (480–768) | Grille 2–3 colonnes                     |
+| Mobile (< 480px)   | Grille 1 colonne, nav collapse          |
+
+---
+
+## Données (localStorage)
+
+| Clé                    | Contenu                       |
+|------------------------|-------------------------------|
+| `chedoudoue_cart`      | Articles du panier (JSON)     |
+| `chedoudoue_contacts`  | Messages de contact (JSON)    |
+| `chedoudoue_wishlist`  | Articles favoris (JSON)       |
+
+---
+
+## Démarrage Local
+
+### Option 1 — Script Windows
+Double-cliquez sur `START.bat`.
+
+### Option 2 — Terminal
+```bash
+cd "Site Arena Test"
+python -m http.server 8000
+# Ouvrez : http://localhost:8000/
+```
+
+### Vérification de l'intégrité
+```bash
+python verify.py
+```
+Ce script vérifie les pages, CSS, JS, images et la cohérence du catalogue.
+
+---
+
+## Navigateurs Compatibles
+- Chrome / Edge (versions récentes)
+- Firefox (versions récentes)
+- Safari (versions récentes)
+- iOS Safari, Chrome Android
+
+---
+
+## Statistiques
+
+| Métrique                  | Valeur         |
+|---------------------------|----------------|
+| Pages HTML                | 9              |
+| Fichiers CSS              | 7              |
+| Fichiers JavaScript       | 6              |
+| Produits                  | 76            |
+| Catégories                | 7              |
+| Images standard           | 62             |
+| Images HD                 | 19             |
+| Lignes CSS approximatives | 3 500+         |
+| Lignes JS approximatives  | 1 500+         |
+
+---
+
+## Améliorations Futures
+
+- [ ] Intégration paiement réel (Stripe / PayPal)
+- [ ] Compte client et historique de commandes
+- [ ] Système de coupons / codes promo
+- [ ] Avis clients avec photos
+- [ ] Comparateur de produits
+- [ ] Recherche avancée avec auto-complétion
+- [ ] Recommandations produits
+- [ ] Mode sombre / clair toggle
+
+---
+
+## Support
+
+- Email : contact@chedoudoue.fr
+- Tél : +33 (0)1 23 45 67 89
+- Formulaire : `pages/contact.html`
+
+---
+
+**CHEDOUDOUE STORE** © 2026 — Luxe Français Premium

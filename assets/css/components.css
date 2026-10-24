@@ -873,6 +873,27 @@
     color var(--duration-fast) var(--ease-out);
 }
 
+/* --- Wishlist / Favoris (btn-wishlist généré par createProductCard) --- */
+.btn-wishlist {
+  transition:
+    transform 300ms ease,
+    color 300ms ease;
+}
+
+.btn-wishlist:hover {
+  transform: scale(1.2);
+  color: #d4af37;
+}
+
+.btn-wishlist.active svg {
+  fill: #d4af37;
+  stroke: #d4af37;
+}
+
+.btn-wishlist.active {
+  color: #d4af37;
+}
+
 .social-row a:hover {
   transform: translateY(-2px);
   color: var(--color-text-primary);

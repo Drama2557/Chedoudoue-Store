@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================
+  SITEMAP.XML — Chedoudoue Store
+  ============================================================
+  IMPORTANT: Replace every occurrence of https://chedoudouestore.com
+             with your actual production domain before deployment.
+
+  Priority scale:
+    1.0 = Homepage (most important)
+    0.9 = Primary catalogue (high traffic, changes often)
+    0.8 = Key content pages
+    0.6 = Secondary content
+    0.2 = Transactional pages (cart, checkout — low SEO value)
+    0.1 = Utility/error pages
+
+  changefreq values: always | hourly | daily | weekly | monthly | yearly | never
+  ============================================================
+-->
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- ════════════════════════════════════════════════════════
+       ROOT PAGES
+       ════════════════════════════════════════════════════════ -->
+
+  <!-- Homepage — highest priority, changes with promotions -->
+  <url>
+    <loc>https://chedoudouestore.com/</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 404 page — included for completeness, not typically indexed -->
+  <url>
+    <loc>https://chedoudouestore.com/404.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.1</priority>
+  </url>
+
+  <!-- ════════════════════════════════════════════════════════
+       MAIN PAGES (inside /pages/)
+       ════════════════════════════════════════════════════════ -->
+
+  <!-- Boutique / Catalogue — products update frequently -->
+  <url>
+    <loc>https://chedoudouestore.com/pages/shop.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Collections — seasonal/curated, changes weekly -->
+  <url>
+    <loc>https://chedoudouestore.com/pages/collections.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Product detail base URL — add individual product URLs below
+       Format: /pages/produits.html?id=PRODUCT-ID
+       Example: /pages/produits.html?id=parfum-12      -->
+  <url>
+    <loc>https://chedoudouestore.com/pages/produits.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact page — rarely changes -->
+  <url>
+    <loc>https://chedoudouestore.com/pages/contact.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- About page -->
+  <url>
+    <loc>https://chedoudouestore.com/pages/about.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Cart — transactional, minimal SEO value -->
+  <url>
+    <loc>https://chedoudouestore.com/pages/cart.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <!-- Checkout — transactional, minimal SEO value -->
+  <url>
+    <loc>https://chedoudouestore.com/pages/checkout.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <!-- ════════════════════════════════════════════════════════
+       EXPANSION SECTION — Add individual product pages here
+       as the catalogue grows.
+
+       Pattern:
+       <url>
+         <loc>https://chedoudouestore.com/pages/produits.html?id=PRODUCT-ID</loc>
+         <lastmod>YYYY-MM-DD</lastmod>
+         <changefreq>monthly</changefreq>
+         <priority>0.7</priority>
+       </url>
+       ════════════════════════════════════════════════════════ -->
+
+</urlset>

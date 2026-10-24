@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentions Légales | CHEDOUDOUE STORE</title>
+    <meta name="description" content="Mentions légales Chedoudoue Store — informations légales, propriété intellectuelle, conditions d'utilisation et droit applicable." />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/theme.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/premium.css" />
+    <link rel="stylesheet" href="../assets/css/animations.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        background: #0a0a0a;
+        color: #f5f5f0;
+        font-family: 'Montserrat', sans-serif;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      /* ===== WATERMARK ===== */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 560px; height: 560px;
+        background-image: url('../assets/logo/logo.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.08;
+        pointer-events: none;
+        z-index: 0;
+        border-radius: 50%;
+        filter: sepia(0.4) saturate(1.8) brightness(1.15) contrast(1.06) drop-shadow(0 0 48px rgba(212, 175, 55, 0.18));
+      }
+
+      /* ===== NAVBAR ===== */
+      nav {
+        position: fixed; top: 0; width: 100%;
+        z-index: 1000;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: rgba(10, 10, 10, 0.92);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      }
+      .nav-container {
+        max-width: 1280px; margin: 0 auto;
+        padding: 0 28px;
+        display: flex; justify-content: space-between; align-items: center;
+        height: 60px;
+      }
+      .nav-logo {
+        display: flex; align-items: center; gap: 10px;
+        text-decoration: none;
+      }
+      .nav-logo-img {
+        height: 40px; width: 40px;
+        border-radius: 50%; object-fit: cover;
+        border: 1.5px solid rgba(212, 175, 55, 0.5);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.18);
+        transition: all 0.3s ease; flex-shrink: 0;
+      }
+      .nav-logo:hover .nav-logo-img { border-color: #d4af37; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+      .nav-logo-separator { width: 1px; height: 24px; background: rgba(212, 175, 55, 0.35); flex-shrink: 0; }
+      .nav-logo-brand { display: flex; flex-direction: column; gap: 3px; }
+      .nav-logo-text {
+        font-family: 'Cinzel', serif;
+        font-size: 15px; font-weight: 700; color: #D4AF37;
+        letter-spacing: 3px; line-height: 1; transition: all 0.3s ease;
+      }
+      .nav-logo:hover .nav-logo-text { color: #e8c84a; text-shadow: 0 0 18px rgba(212, 175, 55, 0.45); }
+      .nav-logo-tagline {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 9.5px; font-style: italic;
+        color: rgba(212, 175, 55, 0.65);
+        letter-spacing: 3px; text-transform: uppercase; line-height: 1;
+      }
+      .nav-right { display: flex; align-items: center; gap: 20px; }
+      .nav-page-label {
+        display: flex; align-items: center; gap: 7px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px; font-weight: 600;
+        color: rgba(245, 245, 240, 0.4);
+        letter-spacing: 2px; text-transform: uppercase;
+      }
+      .nav-page-label svg { color: rgba(212, 175, 55, 0.6); }
+      .nav-cart-link {
+        display: flex; align-items: center; gap: 6px;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px; color: rgba(245, 245, 240, 0.5);
+        letter-spacing: 1px; transition: color 0.3s;
+      }
+      .nav-cart-link:hover { color: #d4af37; }
+      .cart-count {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-width: 18px; height: 18px; padding: 0 4px;
+        background: #d4af37; color: #0a0a0a;
+        font-size: 10px; font-weight: 700; border-radius: 9px;
+      }
+
+      /* ===== PAGE HEADER ===== */
+      .page-header {
+        margin-top: 60px;
+        padding: 56px 28px 36px;
+        text-align: center;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        background: linear-gradient(180deg, rgba(212, 175, 55, 0.04) 0%, transparent 100%);
+        position: relative; z-index: 1;
+      }
+      .page-header-eyebrow {
+        font-family: 'Cinzel', serif;
+        font-size: 10px; color: rgba(212, 175, 55, 0.55);
+        letter-spacing: 7px; text-transform: uppercase; margin-bottom: 14px;
+      }
+      .page-header h1 {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+        font-weight: 700; color: #D4AF37;
+        letter-spacing: 3px; margin-bottom: 10px;
+      }
+      .page-header-subtitle {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 15px; font-style: italic;
+        color: rgba(245, 245, 240, 0.5);
+        letter-spacing: 1px; margin-bottom: 24px;
+      }
+      .header-badges {
+        display: flex; align-items: center; justify-content: center;
+        gap: 28px; flex-wrap: wrap;
+      }
+      .header-badge {
+        display: flex; align-items: center; gap: 7px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px; font-weight: 500;
+        color: rgba(245, 245, 240, 0.38);
+        letter-spacing: 1.5px; text-transform: uppercase;
+      }
+      .header-badge svg { color: rgba(212, 175, 55, 0.5); flex-shrink: 0; }
+
+      /* ===== PAGE MAIN ===== */
+      .page-main {
+        max-width: 820px; margin: 0 auto;
+        padding: 52px 28px 88px;
+        position: relative; z-index: 1;
+      }
+
+      /* ===== SECTION DIVIDER ===== */
+      .section-divider {
+        display: flex; align-items: center; gap: 18px;
+        margin: 44px 0 28px;
+      }
+      .section-divider-line {
+        flex: 1; height: 1px;
+        background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.25), transparent);
+      }
+      .section-divider-label {
+        font-family: 'Cinzel', serif;
+        font-size: 11px; font-weight: 600;
+        color: rgba(212, 175, 55, 0.65);
+        letter-spacing: 4px; text-transform: uppercase; white-space: nowrap;
+      }
+
+      /* ===== INFO CARD ===== */
+      .info-card {
+        background: rgba(255, 255, 255, 0.018);
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        border-radius: 2px; padding: 36px 40px; margin-bottom: 20px;
+      }
+      .info-card-title {
+        font-family: 'Cinzel', serif;
+        font-size: 12px; font-weight: 600;
+        color: #d4af37; letter-spacing: 3px; text-transform: uppercase;
+        margin-bottom: 22px; padding-bottom: 14px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        display: flex; align-items: center; gap: 10px;
+      }
+      .info-card-title svg { flex-shrink: 0; }
+
+      /* ===== INFO ITEM ===== */
+      .info-item {
+        display: flex; gap: 14px;
+        margin-bottom: 18px; align-items: flex-start;
+      }
+      .info-item:last-child { margin-bottom: 0; }
+      .info-item-icon {
+        width: 20px; flex-shrink: 0;
+        color: rgba(212, 175, 55, 0.7); margin-top: 1px;
+      }
+      .info-item-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12.5px; font-weight: 600;
+        color: #f5f5f0; margin-bottom: 5px;
+      }
+      .info-item-text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12.5px;
+        color: rgba(245, 245, 240, 0.52); line-height: 1.72;
+      }
+
+      /* ===== CONTACT CTA ===== */
+      .contact-cta {
+        background: rgba(212, 175, 55, 0.04);
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        border-radius: 2px; padding: 32px 36px;
+        text-align: center; margin-top: 40px;
+      }
+      .contact-cta-title {
+        font-family: 'Cinzel', serif;
+        font-size: 13px; font-weight: 600;
+        color: #d4af37; letter-spacing: 2px; margin-bottom: 8px;
+      }
+      .contact-cta-text {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 16px; font-style: italic;
+        color: rgba(245, 245, 240, 0.48); margin-bottom: 22px;
+      }
+      .cta-btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 12px 32px;
+        background: linear-gradient(135deg, #d4af37, #b8962e);
+        color: #0a0a0a;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px; font-weight: 700;
+        letter-spacing: 2px; text-transform: uppercase;
+        text-decoration: none; border-radius: 1px; transition: all 0.3s ease;
+      }
+      .cta-btn:hover {
+        background: linear-gradient(135deg, #e8c84a, #d4af37);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 24px rgba(212, 175, 55, 0.25);
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: #090909;
+        border-top: 1px solid rgba(212, 175, 55, 0.09);
+        padding: 52px 28px 32px;
+        position: relative; z-index: 1;
+      }
+      .footer-inner { max-width: 1160px; margin: 0 auto; }
+      .footer-cols {
+        display: grid;
+        grid-template-columns: 1.6fr repeat(3, 1fr);
+        gap: 36px; margin-bottom: 32px;
+      }
+      .fcol h3, .fcol h4 {
+        font-family: 'Cinzel', serif;
+        font-size: 11.5px; font-weight: 600;
+        color: #d4af37; letter-spacing: 2.5px; margin-bottom: 14px;
+      }
+      .fcol p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12.5px;
+        color: rgba(245, 245, 240, 0.38); line-height: 1.75;
+      }
+      .fcol ul { list-style: none; padding: 0; margin: 0; }
+      .fcol ul li a {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12.5px;
+        color: rgba(245, 245, 240, 0.44);
+        text-decoration: none; display: block; margin-bottom: 7px;
+        transition: color 0.3s, padding-left 0.3s;
+      }
+      .fcol ul li a:hover { color: #d4af37; padding-left: 4px; }
+      .footer-bar {
+        border-top: 1px solid rgba(212, 175, 55, 0.07);
+        padding-top: 20px; text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11.5px;
+        color: rgba(245, 245, 240, 0.26); letter-spacing: 1px;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 640px) {
+        .page-header { padding: 44px 16px 28px; }
+        .header-badges { gap: 14px; }
+        .page-main { padding: 36px 16px 64px; }
+        .info-card { padding: 24px 20px; }
+        .footer-cols { grid-template-columns: 1fr 1fr; }
+        .nav-logo-tagline { display: none; }
+        .section-divider { margin: 32px 0 20px; }
+      }
+      @media (max-width: 400px) {
+        .footer-cols { grid-template-columns: 1fr; }
+        .nav-page-label span { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+          <img src="../assets/logo/logo.jpg" alt="Chedoudoue Store" class="nav-logo-img" />
+          <div class="nav-logo-separator"></div>
+          <div class="nav-logo-brand">
+            <span class="nav-logo-text">CHEDOUDOUE STORE</span>
+            <span class="nav-logo-tagline">La Boutique de L'élégance</span>
+          </div>
+        </a>
+        <div class="nav-right">
+          <div class="nav-page-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+            <span>Mentions Légales</span>
+          </div>
+          <a href="cart.html" class="nav-cart-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 11V7a4 4 0 0 0-8 0v4"/><path d="M5 9h14l1 12H4L5 9z"/></svg>
+            <span class="cart-count">0</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===== HEADER ===== -->
+    <header class="page-header">
+      <p class="page-header-eyebrow">Chedoudoue Store</p>
+      <h1>Mentions Légales</h1>
+      <p class="page-header-subtitle">Informations légales relatives à l'éditeur du site, la propriété intellectuelle et les conditions d'utilisation</p>
+      <div class="header-badges">
+        <span class="header-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Conformité Légale
+        </span>
+        <span class="header-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Propriété Protégée
+        </span>
+        <span class="header-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Droit Applicable
+        </span>
+        <span class="header-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Marque Déposée
+        </span>
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="page-main">
+
+      <!-- ══════════ INFORMATIONS LÉGALES ══════════ -->
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <span class="section-divider-label">Informations Légales</span>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <!-- Éditeur du Site -->
+      <div class="info-card">
+        <div class="info-card-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Éditeur du Site
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Dénomination</p>
+            <p class="info-item-text">CHEDOUDOUE STORE — Maison de luxe spécialisée dans la vente en ligne de produits de luxe et d'accessoires premium à destination de la clientèle haïtienne et de la diaspora francophone.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Localisation</p>
+            <p class="info-item-text">République d'Haïti — présence commerciale internationale avec livraisons vers Haïti, France, Canada, États-Unis, Belgique, Suisse et autres destinations.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Activité</p>
+            <p class="info-item-text">Commerce en ligne de produits de luxe — bijoux, parfums, maroquinerie, prêt-à-porter et accessoires de prestige. Fondée en 2016, Chedoudoue Store s'est imposée comme une référence du luxe accessible pour la diaspora.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact & Publication -->
+      <div class="info-card">
+        <div class="info-card-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+          Responsable de Publication &amp; Contact
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Direction de la publication</p>
+            <p class="info-item-text">Le directeur de la publication est le représentant légal de CHEDOUDOUE STORE. Toute demande relative au contenu du site peut être adressée à notre équipe via le formulaire de contact officiel.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Contact</p>
+            <p class="info-item-text">Pour toute question légale, demande de suppression de contenu ou signalement, utilisez le formulaire de contact disponible sur notre site. Notre équipe s'engage à répondre dans un délai de 5 jours ouvrables.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ HÉBERGEMENT ══════════ -->
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <span class="section-divider-label">Hébergement</span>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <!-- Hébergement -->
+      <div class="info-card">
+        <div class="info-card-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          Hébergement du Site
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Infrastructure sécurisée</p>
+            <p class="info-item-text">Le site chedoudoue.com est hébergé sur une infrastructure cloud de premier plan, conforme aux normes internationales de sécurité. Toutes les communications sont chiffrées via le protocole HTTPS/SSL.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Disponibilité</p>
+            <p class="info-item-text">Nous nous efforçons d'assurer une disponibilité maximale du site. Des interruptions de service temporaires peuvent survenir pour des raisons de maintenance ou de force majeure, sans engager notre responsabilité.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ PROPRIÉTÉ INTELLECTUELLE ══════════ -->
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <span class="section-divider-label">Propriété Intellectuelle</span>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <!-- Droits d'Auteur -->
+      <div class="info-card">
+        <div class="info-card-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Droits d'Auteur &amp; Marques
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Contenu du site</p>
+            <p class="info-item-text">L'ensemble des éléments constituant ce site (textes, images, visuels produits, logotypes, graphismes, vidéos, structure, code source) est la propriété exclusive de CHEDOUDOUE STORE ou de leurs ayants droit respectifs.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Reproduction interdite</p>
+            <p class="info-item-text">Toute reproduction, représentation, modification, publication, adaptation ou exploitation de tout ou partie du contenu de ce site, quel qu'en soit le support ou le procédé, est strictement interdite sans autorisation préalable et écrite de CHEDOUDOUE STORE.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Marque commerciale</p>
+            <p class="info-item-text">La marque "CHEDOUDOUE STORE" ainsi que le logo associé sont des marques commerciales protégées. Toute utilisation non autorisée constitue une contrefaçon susceptible de poursuites judiciaires.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ CONDITIONS D'UTILISATION ══════════ -->
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <span class="section-divider-label">Conditions d'Utilisation</span>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <!-- Utilisation du Site -->
+      <div class="info-card">
+        <div class="info-card-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Utilisation du Site
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Usage personnel</p>
+            <p class="info-item-text">Ce site est destiné à un usage strictement personnel et non commercial. Toute utilisation à des fins commerciales, notamment la revente ou l'extraction automatisée de données, est formellement interdite.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Accès non autorisé</p>
+            <p class="info-item-text">Toute tentative d'accès non autorisé, de modification, d'altération ou de perturbation du fonctionnement du site est strictement interdite et peut faire l'objet de poursuites judiciaires.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limitation de Responsabilité -->
+      <div class="info-card">
+        <div class="info-card-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Limitation de Responsabilité
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Disponibilité &amp; exactitude</p>
+            <p class="info-item-text">CHEDOUDOUE STORE s'efforce de maintenir les informations publiées sur ce site à jour et exactes. Toutefois, nous déclinons toute responsabilité pour les erreurs ou omissions éventuelles et nous réservons le droit de modifier les contenus sans préavis.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Liens externes</p>
+            <p class="info-item-text">Notre site peut contenir des liens vers des sites tiers. CHEDOUDOUE STORE ne saurait être tenu responsable du contenu de ces sites ni des pratiques de confidentialité qui y sont appliquées. Leur consultation se fait sous l'entière responsabilité de l'utilisateur.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ DROIT APPLICABLE ══════════ -->
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <span class="section-divider-label">Droit Applicable</span>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <!-- Juridiction -->
+      <div class="info-card">
+        <div class="info-card-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          Juridiction &amp; Loi Applicable
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Loi applicable</p>
+            <p class="info-item-text">Les présentes mentions légales sont régies par la législation applicable au lieu d'établissement de l'éditeur. En cas de litige, les parties s'efforceront de trouver une solution amiable avant tout recours judiciaire.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <p class="info-item-title">Modifications</p>
+            <p class="info-item-text">CHEDOUDOUE STORE se réserve le droit de modifier à tout moment les présentes mentions légales afin de les adapter aux évolutions législatives ou à l'activité du site. Les utilisateurs sont invités à les consulter régulièrement.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="contact-cta">
+        <p class="contact-cta-title">Une question d'ordre légal ?</p>
+        <p class="contact-cta-text">Notre équipe est disponible pour toute demande relative aux mentions légales</p>
+        <a href="contact.html" class="cta-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contacter l'Équipe
+        </a>
+      </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-cols">
+          <div class="fcol">
+            <h3>CHEDOUDOUE STORE</h3>
+            <p>La splendeur de l'élégance intemporelle. Luxe français au cœur de chaque création, depuis 2016.</p>
+          </div>
+          <div class="fcol">
+            <h4>Boutique</h4>
+            <ul>
+              <li><a href="shop.html">Tous les Produits</a></li>
+              <li><a href="shop.html">Nouveautés</a></li>
+              <li><a href="shop.html">Best-sellers</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="livraison-retours.html">Livraison &amp; Retours</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Entreprise</h4>
+            <ul>
+              <li><a href="a-propos.html">À Propos</a></li>
+              <li><a href="politique-confidentialite.html">Politique de Confidentialité</a></li>
+              <li><a href="mentions-legales.html">Mentions Légales</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bar">
+          &copy; 2026 CHEDOUDOUE STORE. Tous droits réservés. <span style="color:#d4af37;">✨</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/currency.js"></script>
+    <script src="../assets/js/products.js"></script>
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/cart.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/nav.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var countEl = document.querySelector('.cart-count');
+        if (countEl && typeof cart !== 'undefined') {
+          var items = cart.getCartItems();
+          var count = items.reduce(function (s, i) { return s + (i.quantity || 1); }, 0);
+          countEl.textContent = count;
+        }
+      });
+    </script>
+  </body>
+</html>

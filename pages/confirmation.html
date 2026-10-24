@@ -1,132 +1,902 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Commande Confirmée | Chedoudoue</title>
-    <link rel="stylesheet" href="assets/css/theme.css" />
+    <title>Commande Confirmée | CHEDOUDOUE STORE</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../assets/css/theme.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/premium.css" />
+    <link rel="stylesheet" href="../assets/css/animations.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
     <style>
-      .header-minimal {
-        padding-block: var(--space-6);
-        text-align: center;
-        border-bottom: var(--border-smoke);
-        background: var(--color-obsidian);
-      }
-      .confirmation-box {
-        max-width: 600px;
-        margin: 0 auto;
-        background: var(--color-graphite);
-        padding: var(--space-12);
-        border: var(--border-thin);
-        text-align: center;
-      }
-      .btn-outline {
-        display: inline-flex;
-        padding: var(--space-4) var(--space-8);
-        border: var(--border-thick);
-        color: var(--color-gold);
-        text-decoration: none;
-        font-family: var(--font-body);
-        font-size: var(--fs-xs);
-        text-transform: uppercase;
-        letter-spacing: var(--ls-widest);
-        font-weight: var(--fw-bold);
-        transition: all var(--transition-fast);
-      }
-      .btn-outline:hover {
-        background: var(--gradient-gold);
-        color: var(--color-black);
+      /* ===== BASE ===== */
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        background: #0a0a0a;
+        color: #f5f5f0;
+        font-family: 'Montserrat', sans-serif;
+        min-height: 100vh;
+        position: relative;
       }
 
-      .success-icon {
-        display: inline-flex;
+      /* ===== WATERMARK ===== */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 560px;
+        height: 560px;
+        background-image: url('../assets/logo/logo.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.08;
+        pointer-events: none;
+        z-index: 0;
+        border-radius: 50%;
+        filter: sepia(0.4) saturate(1.8) brightness(1.15) contrast(1.06) drop-shadow(0 0 48px rgba(212, 175, 55, 0.18));
+      }
+
+      /* ===== NAVBAR ===== */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: rgba(10, 10, 10, 0.92);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      }
+
+      .nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .nav-logo-img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid rgba(212, 175, 55, 0.5);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.18);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+
+      .nav-logo:hover .nav-logo-img {
+        border-color: #d4af37;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+      }
+
+      .nav-logo-separator {
+        width: 1px;
+        height: 24px;
+        background: rgba(212, 175, 55, 0.35);
+        flex-shrink: 0;
+      }
+
+      .nav-logo-brand { display: flex; flex-direction: column; gap: 3px; }
+
+      .nav-logo-text {
+        font-family: 'Cinzel', serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #D4AF37;
+        letter-spacing: 3px;
+        line-height: 1;
+        transition: all 0.3s ease;
+      }
+
+      .nav-logo:hover .nav-logo-text {
+        color: #e8c84a;
+        text-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+      }
+
+      .nav-logo-tagline {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 9.5px;
+        font-style: italic;
+        color: rgba(212, 175, 55, 0.65);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .nav-thankyou {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        color: rgba(212, 175, 55, 0.55);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .nav-thankyou svg { color: rgba(212, 175, 55, 0.7); }
+
+      /* ===== CONFIRMATION HEADER ===== */
+      .confirmation-header {
+        margin-top: 70px;
+        padding: 56px 28px 36px;
+        text-align: center;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        background: linear-gradient(180deg, rgba(212, 175, 55, 0.04) 0%, transparent 100%);
+        position: relative;
+        z-index: 1;
+      }
+
+      .success-ring {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(212, 175, 55, 0.5);
+        background: rgba(212, 175, 55, 0.06);
+        display: flex;
         align-items: center;
         justify-content: center;
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        border: 1px solid var(--color-gold);
-        margin-bottom: var(--space-6);
-        color: var(--color-gold);
+        margin: 0 auto 22px;
+        box-shadow: 0 0 36px rgba(212, 175, 55, 0.12);
+        animation: ringPulse 2.4s ease-in-out infinite;
+      }
+
+      @keyframes ringPulse {
+        0%, 100% { box-shadow: 0 0 36px rgba(212, 175, 55, 0.12); }
+        50%       { box-shadow: 0 0 56px rgba(212, 175, 55, 0.28); }
+      }
+
+      .success-ring svg { color: #d4af37; }
+
+      .confirmation-header-eyebrow {
+        font-family: 'Cinzel', serif;
+        font-size: 10px;
+        color: rgba(212, 175, 55, 0.55);
+        letter-spacing: 7px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+
+      .confirmation-header h1 {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+        font-weight: 700;
+        color: #D4AF37;
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+      }
+
+      .confirmation-header-subtitle {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 15px;
+        font-style: italic;
+        color: rgba(245, 245, 240, 0.5);
+        letter-spacing: 1px;
+        margin-bottom: 24px;
+      }
+
+      .confirmation-badges {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+
+      .confirmation-badge {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        color: rgba(245, 245, 240, 0.38);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .confirmation-badge svg { color: rgba(212, 175, 55, 0.5); flex-shrink: 0; }
+
+      /* ===== MAIN ===== */
+      .confirmation-main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 52px 28px 88px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ===== ORDER REFERENCE ===== */
+      .order-ref-card {
+        text-align: center;
+        padding: 28px 24px;
+        border: 1px solid rgba(212, 175, 55, 0.18);
+        border-radius: 2px;
+        background: rgba(212, 175, 55, 0.03);
+        margin-bottom: 36px;
+      }
+
+      .order-ref-label {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        color: rgba(212, 175, 55, 0.55);
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .order-ref-number {
+        font-family: 'Cinzel', serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #d4af37;
+        letter-spacing: 5px;
+        margin-bottom: 10px;
+      }
+
+      .order-ref-date {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 14px;
+        font-style: italic;
+        color: rgba(245, 245, 240, 0.4);
+        letter-spacing: 0.5px;
+      }
+
+      /* ===== THANK YOU MESSAGE ===== */
+      .thankyou-block {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .thankyou-block h2 {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+        font-weight: 600;
+        color: #f5f5f0;
+        letter-spacing: 2px;
+        margin-bottom: 14px;
+      }
+
+      .thankyou-block p {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 16px;
+        font-style: italic;
+        color: rgba(245, 245, 240, 0.5);
+        line-height: 1.75;
+        max-width: 540px;
+        margin: 0 auto 10px;
+      }
+
+      .thankyou-email-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        color: rgba(212, 175, 55, 0.55);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-top: 8px;
+      }
+
+      .thankyou-email-note svg { color: rgba(212, 175, 55, 0.6); }
+
+      /* ===== SUMMARY CARD ===== */
+      .summary-card {
+        background: rgba(13, 13, 13, 0.97);
+        border: 1px solid rgba(212, 175, 55, 0.14);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 36px;
+      }
+
+      .summary-card-header {
+        padding: 18px 22px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.09);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .summary-card-header h3 {
+        font-family: 'Cinzel', serif;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #d4af37;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+      }
+
+      .summary-items-count {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        color: rgba(245, 245, 240, 0.35);
+        letter-spacing: 1px;
+      }
+
+      .summary-items-list {
+        padding: 18px 22px;
+        max-height: 320px;
+        overflow-y: auto;
+      }
+
+      .summary-items-list::-webkit-scrollbar { width: 3px; }
+      .summary-items-list::-webkit-scrollbar-track { background: transparent; }
+      .summary-items-list::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.25); border-radius: 2px; }
+
+      .s-item {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding-bottom: 14px;
+        margin-bottom: 14px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+      }
+
+      .s-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+      .s-item-img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border: 1px solid rgba(212, 175, 55, 0.12);
+        flex-shrink: 0;
+        border-radius: 1px;
+      }
+
+      .s-item-info { flex: 1; min-width: 0; }
+
+      .s-item-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 14px;
+        color: #f5f5f0;
+        margin-bottom: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .s-item-qty {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10.5px;
+        color: rgba(245, 245, 240, 0.35);
+        letter-spacing: 0.5px;
+      }
+
+      .s-item-price {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #d4af37;
+        flex-shrink: 0;
+      }
+
+      .summary-totals {
+        padding: 16px 22px 20px;
+        border-top: 1px solid rgba(212, 175, 55, 0.09);
+      }
+
+      .s-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 9px;
+      }
+
+      .s-line-label {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11.5px;
+        color: rgba(245, 245, 240, 0.42);
+      }
+
+      .s-line-val {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11.5px;
+        color: rgba(245, 245, 240, 0.65);
+      }
+
+      .s-line-val.free { color: rgba(212, 175, 55, 0.75); }
+
+      .s-total-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 14px;
+        margin-top: 6px;
+        border-top: 1px solid rgba(212, 175, 55, 0.12);
+      }
+
+      .s-total-label {
+        font-family: 'Cinzel', serif;
+        font-size: 12px;
+        font-weight: 600;
+        color: #f5f5f0;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+      }
+
+      .s-total-amount {
+        font-family: 'Cinzel', serif;
+        font-size: 21px;
+        font-weight: 700;
+        color: #d4af37;
+      }
+
+      /* ===== DELIVERY INFO ===== */
+      .delivery-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 20px;
+        border: 1px solid rgba(212, 175, 55, 0.13);
+        border-radius: 2px;
+        background: rgba(212, 175, 55, 0.025);
+        margin-bottom: 40px;
+      }
+
+      .delivery-info svg { color: rgba(212, 175, 55, 0.6); flex-shrink: 0; margin-top: 2px; }
+
+      .delivery-info-text h4 {
+        font-family: 'Cinzel', serif;
+        font-size: 11px;
+        font-weight: 600;
+        color: #d4af37;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .delivery-info-text p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11.5px;
+        color: rgba(245, 245, 240, 0.42);
+        line-height: 1.7;
+        letter-spacing: 0.3px;
+      }
+
+      .delivery-info-text p strong {
+        color: rgba(245, 245, 240, 0.65);
+        font-weight: 600;
+      }
+
+      .delivery-info-text a {
+        color: #d4af37;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+
+      .delivery-info-text a:hover { opacity: 0.8; }
+
+      /* ===== ACTION BUTTONS ===== */
+      .action-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .btn-continue-shopping {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 16px 20px;
+        background: linear-gradient(100deg, #c9a227 0%, #d4af37 45%, #c9a227 100%);
+        background-size: 200% 100%;
+        background-position: left center;
+        color: #0a0a0a;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: background-position 0.45s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      }
+
+      .btn-continue-shopping:hover {
+        background-position: right center;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 28px rgba(212, 175, 55, 0.22);
+      }
+
+      .btn-continue-shopping:active { transform: translateY(0); }
+
+      .btn-back-home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 16px 20px;
+        background: transparent;
+        border: 1px solid rgba(212, 175, 55, 0.28);
+        color: rgba(212, 175, 55, 0.75);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, transform 0.2s ease;
+      }
+
+      .btn-back-home:hover {
+        border-color: rgba(212, 175, 55, 0.6);
+        color: #d4af37;
+        background: rgba(212, 175, 55, 0.05);
+        transform: translateY(-1px);
+      }
+
+      .btn-back-home:active { transform: translateY(0); }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: #090909;
+        border-top: 1px solid rgba(212, 175, 55, 0.09);
+        padding: 52px 28px 32px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-inner { max-width: 1160px; margin: 0 auto; }
+
+      .footer-cols {
+        display: grid;
+        grid-template-columns: 1.6fr repeat(3, 1fr);
+        gap: 36px;
+        margin-bottom: 32px;
+      }
+
+      .fcol h3, .fcol h4 {
+        font-family: 'Cinzel', serif;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #d4af37;
+        letter-spacing: 2.5px;
+        margin-bottom: 14px;
+      }
+
+      .fcol p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12.5px;
+        color: rgba(245, 245, 240, 0.38);
+        line-height: 1.75;
+      }
+
+      .fcol ul { list-style: none; padding: 0; margin: 0; }
+
+      .fcol ul li a {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12.5px;
+        color: rgba(245, 245, 240, 0.44);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 7px;
+        transition: color 0.3s, padding-left 0.3s;
+      }
+
+      .fcol ul li a:hover { color: #d4af37; padding-left: 4px; }
+
+      .footer-bar {
+        border-top: 1px solid rgba(212, 175, 55, 0.07);
+        padding-top: 20px;
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11.5px;
+        color: rgba(245, 245, 240, 0.26);
+        letter-spacing: 1px;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 640px) {
+        .confirmation-header { padding: 44px 16px 28px; }
+        .confirmation-badges { gap: 14px; }
+        .confirmation-main { padding: 36px 16px 64px; }
+        .action-buttons { grid-template-columns: 1fr; }
+        .footer-cols { grid-template-columns: 1fr 1fr; }
+        .nav-logo-tagline { display: none; }
+      }
+
+      @media (max-width: 400px) {
+        .footer-cols { grid-template-columns: 1fr; }
+        .nav-thankyou span { display: none; }
       }
     </style>
   </head>
-  <body class="section--dark flex-col" style="min-height: 100vh">
-    <header class="header-minimal">
-      <a
-        href="index.html"
-        class="font-display text-large text-gold tracking-widest text-upper"
-        >Chedoudoue</a
-      >
-    </header>
+  <body>
 
-    <main class="section flex items-center justify-center flex-grow">
-      <div class="container">
-        <div class="confirmation-box">
-          <!-- Icône Succès (SVG sémantique) -->
-          <div class="success-icon">
-            ```svg
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M20 6L9 17l-5-5" />
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+          <img src="../assets/logo/logo.jpg" alt="Chedoudoue Store" class="nav-logo-img" />
+          <div class="nav-logo-separator"></div>
+          <div class="nav-logo-brand">
+            <span class="nav-logo-text">CHEDOUDOUE STORE</span>
+            <span class="nav-logo-tagline">La Boutique de L'élégance</span>
+          </div>
+        </a>
+        <div class="nav-right">
+          <div class="nav-thankyou">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            ```
+            <span>Commande Confirmée</span>
           </div>
-
-          <h1
-            class="font-display text-gradient-gold mb-2"
-            style="font-size: 2rem"
-          >
-            Félicitations
-          </h1>
-          <p class="font-editorial text-large text-ivory mb-8">
-            Votre commande a été traitée avec succès.
-          </p>
-
-          <div class="border-y border-smoke py-6 mb-8">
-            <p
-              class="font-body text-xs text-silver tracking-wider uppercase mb-2"
-            >
-              Numéro de commande
-            </p>
-            <p
-              class="font-body text-large text-gold fw-bold tracking-widest mb-4"
-            >
-              #CHD-849201
-            </p>
-
-            <p class="font-editorial text-silver">
-              Un e-mail de confirmation contenant les détails de votre achat et
-              le lien de suivi de livraison vient de vous être envoyé.
-            </p>
-          </div>
-
-          <p class="font-body text-xs text-mist mb-8">
-            Notre service client se tient à votre entière disposition pour toute
-            demande concernant votre commande.
-          </p>
-
-          <a href="shop.html" class="btn-outline">Retour à la boutique</a>
         </div>
       </div>
+    </nav>
+
+    <!-- ===== HEADER ===== -->
+    <header class="confirmation-header">
+      <div class="success-ring">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <p class="confirmation-header-eyebrow">Chedoudoue Store</p>
+      <h1>Commande Confirmée</h1>
+      <p class="confirmation-header-subtitle">Merci pour votre confiance — votre commande a bien été reçue</p>
+      <div class="confirmation-badges">
+        <span class="confirmation-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Paiement Sécurisé
+        </span>
+        <span class="confirmation-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Livraison Offerte
+        </span>
+        <span class="confirmation-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Suivi en Temps Réel
+        </span>
+        <span class="confirmation-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 .49-3.51"></path>
+          </svg>
+          Retour 30 Jours
+        </span>
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="confirmation-main">
+
+      <!-- RÉFÉRENCE COMMANDE -->
+      <div class="order-ref-card">
+        <p class="order-ref-label">Référence de commande</p>
+        <p class="order-ref-number" id="order-ref">CMD-——</p>
+        <p class="order-ref-date" id="order-date"></p>
+      </div>
+
+      <!-- MESSAGE DE REMERCIEMENT -->
+      <div class="thankyou-block">
+        <h2 id="thankyou-heading">Merci pour votre commande !</h2>
+        <p>
+          Nous préparons soigneusement votre sélection avec la même attention portée
+          à chaque détail qui définit la maison Chedoudoue Store.
+        </p>
+        <p>
+          Notre équipe vous contactera très prochainement pour organiser
+          la livraison à votre adresse.
+        </p>
+        <div class="thankyou-email-note">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span id="email-note">Un récapitulatif vous sera envoyé par e-mail</span>
+        </div>
+      </div>
+
+      <!-- RÉCAPITULATIF COMMANDE -->
+      <div class="summary-card">
+        <div class="summary-card-header">
+          <h3>Récapitulatif</h3>
+          <span class="summary-items-count" id="items-count"></span>
+        </div>
+        <div class="summary-items-list" id="confirm-items">
+          <!-- Injecté par JS -->
+        </div>
+        <div class="summary-totals">
+          <div class="s-line">
+            <span class="s-line-label">Sous-total</span>
+            <span class="s-line-val" id="confirm-subtotal">$0</span>
+          </div>
+          <div class="s-line">
+            <span class="s-line-label">Livraison</span>
+            <span class="s-line-val free">Offerte</span>
+          </div>
+          <div class="s-total-row">
+            <span class="s-total-label">Total</span>
+            <span class="s-total-amount" id="confirm-total">$0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO LIVRAISON -->
+      <div class="delivery-info">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <div class="delivery-info-text">
+          <h4>Informations de Livraison</h4>
+          <p>
+            Livraison offerte — délai estimé <strong>3 à 7 jours ouvrables</strong>.<br />
+            Notre équipe vous contactera pour confirmer l'heure et le lieu de livraison.<br />
+            Pour toute question, contactez-nous via la page
+            <a href="contact.html">Contact</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- BOUTONS D'ACTION -->
+      <div class="action-buttons">
+        <a href="shop.html" class="btn-continue-shopping">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          Continuer mes Achats
+        </a>
+        <a href="../index.html" class="btn-back-home">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Retour à l'Accueil
+        </a>
+      </div>
+
     </main>
 
-    <footer class="text-center py-6 border-t border-smoke">
-      <p class="font-body text-xs text-mist tracking-widest text-upper">
-        &copy; 2026 Chedoudoue.
-      </p>
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-cols">
+          <div class="fcol">
+            <h3>CHEDOUDOUE STORE</h3>
+            <p>La splendeur de l'élégance intemporelle. Luxe français au cœur de chaque création, depuis 2016.</p>
+          </div>
+          <div class="fcol">
+            <h4>Boutique</h4>
+            <ul>
+              <li><a href="shop.html">Tous les Produits</a></li>
+              <li><a href="shop.html">Nouveautés</a></li>
+              <li><a href="shop.html">Best-sellers</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="livraison-retours.html">Livraison &amp; Retours</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Entreprise</h4>
+            <ul>
+              <li><a href="a-propos.html">À Propos</a></li>
+              <li><a href="politique-confidentialite.html">Politique de Confidentialité</a></li>
+              <li><a href="mentions-legales.html">Mentions Légales</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bar">
+          &copy; 2026 CHEDOUDOUE STORE. Tous droits réservés. <span style="color:#d4af37;">✨</span>
+        </div>
+      </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/currency.js"></script>
+    <script src="../assets/js/products.js"></script>
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/cart.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/nav.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        var raw = sessionStorage.getItem('chedoudoue_order_confirm');
+        var order = raw ? JSON.parse(raw) : null;
+
+        if (!order || !order.items || order.items.length === 0) {
+          window.location.replace('shop.html');
+          return;
+        }
+
+        // Référence et date
+        document.getElementById('order-ref').textContent = order.orderRef || 'CMD-——';
+        document.getElementById('order-date').textContent = order.date || '';
+
+        // Titre personnalisé
+        if (order.customerName) {
+          document.getElementById('thankyou-heading').textContent =
+            'Merci ' + order.customerName + ' !';
+        }
+
+        // Note e-mail
+        if (order.email) {
+          document.getElementById('email-note').textContent =
+            'Récapitulatif envoyé à ' + order.email;
+        }
+
+        // Articles
+        var itemsHTML = '';
+        var subtotal = 0;
+        order.items.forEach(function (item) {
+          var folder = item.image_folder || getImageFolder(item);
+          var itemTotal = item.price * item.quantity;
+          subtotal += itemTotal;
+          var sizeInfo = item.size ? ' &nbsp;&middot;&nbsp; Taille : ' + item.size : '';
+          itemsHTML +=
+            '<div class="s-item">' +
+              '<img src="../assets/images/' + folder + '/' + item.image +
+              '" alt="' + item.name + '" class="s-item-img"' +
+              ' onerror="this.onerror=null;this.style.opacity=\'0.15\';this.src=\'../assets/logo/logo.jpg\'" />' +
+              '<div class="s-item-info">' +
+                '<p class="s-item-name">' + item.name + '</p>' +
+                '<p class="s-item-qty">Qté : ' + item.quantity + sizeInfo + '</p>' +
+              '</div>' +
+              '<span class="s-item-price">' + CURRENCY.usd(itemTotal) + '</span>' +
+            '</div>';
+        });
+
+        document.getElementById('confirm-items').innerHTML = itemsHTML;
+
+        var count = order.items.length;
+        document.getElementById('items-count').textContent =
+          count + (count > 1 ? ' articles' : ' article');
+
+        var total = (order.total != null) ? order.total : subtotal;
+        document.getElementById('confirm-subtotal').textContent = CURRENCY.usd(total);
+        document.getElementById('confirm-total').textContent = CURRENCY.usd(total);
+
+        sessionStorage.removeItem('chedoudoue_order_confirm');
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,30 @@
+# ============================================================
+#  robots.txt — Chedoudoue Store
+#  https://chedoudouestore.com
+#
+#  Controls which pages search engine crawlers may access.
+#  IMPORTANT: Update the Sitemap URL with your actual domain
+#             before deploying to production.
+# ============================================================
+
+# Rules for all crawlers (Google, Bing, etc.)
+User-agent: *
+
+# Allow all public-facing pages by default
+Allow: /
+
+# ── Transactional pages ──────────────────────────────────────
+# Cart and checkout have no SEO value and contain user-specific
+# session state — exclude them from indexing.
+Disallow: /pages/cart.html
+Disallow: /pages/checkout.html
+
+# ── Raw data files ───────────────────────────────────────────
+# Prevent direct crawling of the JSON catalogue file.
+# Product content is rendered via JavaScript — the file itself
+# does not need to be indexed.
+Disallow: /assets/data/
+
+# ── Sitemap reference ────────────────────────────────────────
+# Tells search engines where to find the full page index.
+Sitemap: https://chedoudouestore.com/sitemap.xml
