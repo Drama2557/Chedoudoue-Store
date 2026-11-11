@@ -1272,6 +1272,15 @@
 
         // Produits vedettes
         const featured = getFeaturedProducts(6);
+        const featuredIds = new Set(featured.map((product) => product.id));
+        ["beaute-07", "homme-09"].forEach((productId) => {
+          const product = getProductById(productId);
+          if (product && !featuredIds.has(product.id)) {
+            featured.push(product);
+            featuredIds.add(product.id);
+          }
+        });
+
         const featuredHtml = featured
           .map((p) => createProductCardHTML(p))
           .join("");
