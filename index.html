@@ -445,6 +445,18 @@
         transform: scale(1.05);
       }
 
+      /* Réduit uniquement la photo Lace dans les Collections phares */
+      #featured-products .product-card[data-product-id="beaute-07"] .product-image img {
+        display: block;
+        width: 92%;
+        height: 92%;
+        margin: 4%;
+      }
+
+      #featured-products .product-card[data-product-id="beaute-07"]:hover .product-image img {
+        transform: scale(0.95);
+      }
+
       .product-badge {
         display: none !important;
       }
