@@ -16,6 +16,8 @@
       "original_price": "Pre-discount price in USD. Used by products.js to compute discount %. Omit when no discount.",
       "image":          "Primary image filename. Folder resolved by getImageFolder() in products.js.",
       "image_folder":   "Folder override. Set to 'hd' for Signature-tier products. Omit for standard products.",
+      "image_position": "Optional CSS object-position value for image cropping; defaults to center.",
+      "image_fit":      "Optional 'cover' or 'contain'; defaults to cover.",
       "images":         "Ordered gallery filenames shown on produits.html. Must include the primary image.",
       "description":    "Long-form description shown on the product detail page.",
       "badge":          "Display badge string — 'NOUVEAU' | 'BEST-SELLER' | 'ÉDITION LIMITÉE' | 'PROMO' | null",
