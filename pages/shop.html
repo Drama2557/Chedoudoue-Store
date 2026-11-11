@@ -402,6 +402,12 @@
         aspect-ratio: 3 / 4;
       }
 
+      /* Portrait framing only for Parfums and Valises */
+      .product-card[data-product-id^="parfum-"] .product-image,
+      .product-card[data-product-id^="voyage-"] .product-image {
+        aspect-ratio: 3 / 4;
+      }
+
       .product-image img {
         width: 100%;
         height: 100%;
@@ -950,7 +956,7 @@
         return `
                 <div class="product-card" data-product-id="${product.id}" onclick="window.location.href='produits.html?id=${product.id}'">
                     <div class="product-image">
-                        <img src="../assets/images/${categoryFolder}/${product.image}" alt="${product.name}" loading="lazy" ${product.category === 'beaute' ? `style="object-fit: ${product.image_fit === 'contain' ? 'contain' : 'cover'}; object-position: ${product.image_position || 'center'};"` : ""}>
+                        <img src="../assets/images/${categoryFolder}/${product.image}" alt="${product.name}" loading="lazy" ${['beaute', 'parfums', 'voyage'].includes(product.category) ? `style="object-fit: ${product.image_fit === 'contain' ? 'contain' : 'cover'}; object-position: ${product.image_position || 'center'};"` : ""}>
                         ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ""}
                         ${product.new ? `<div class="product-badge" style="left: 12px;">NOUVEAU</div>` : ""}
                     </div>
