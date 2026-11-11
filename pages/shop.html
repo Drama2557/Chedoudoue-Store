@@ -392,37 +392,37 @@
       .product-image {
         position: relative;
         width: 100%;
-        aspect-ratio: 1;
+        aspect-ratio: 3 / 4;
         overflow: hidden;
         background: #1a1a1a;
       }
 
-      .product-image img {
+      .product-image > img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
-      .product-card:hover .product-image img {
+      .product-card:hover .product-image > img {
         transform: scale(1.05);
       }
 
-      [data-product-id="beaute-05"] .product-image img {
+      [data-product-id="beaute-05"] .product-image > img {
         object-position: center 65%;
       }
 
-      [data-product-id="beaute-06"] .product-image img {
+      [data-product-id="beaute-06"] .product-image > img {
         object-position: center 55%;
       }
 
-      [data-product-id="beaute-07"] .product-image img {
+      [data-product-id="beaute-07"] .product-image > img {
         object-position: center 50%;
       }
 
       /* Fashion clothing: show face/upper body, not waist */
-      [data-product-id^="femme"] .product-image img,
-      [data-product-id^="homme"] .product-image img {
+      [data-product-id^="femme"] .product-image > img,
+      [data-product-id^="homme"] .product-image > img {
         object-position: center top;
       }
 
@@ -945,7 +945,7 @@
         return `
                 <div class="product-card" data-product-id="${product.id}" onclick="window.location.href='produits.html?id=${product.id}'">
                     <div class="product-image">
-                        <img src="../assets/images/${categoryFolder}/${product.image}" alt="${product.name}" loading="lazy">
+                        <img src="../assets/images/${categoryFolder}/${product.image}" alt="${product.name}" loading="lazy" style="object-fit: ${product.image_fit === 'contain' ? 'contain' : 'cover'};${product.image_position ? ' object-position: ' + product.image_position + ';' : ''}">
                         ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ""}
                         ${product.new ? `<div class="product-badge" style="left: 12px;">NOUVEAU</div>` : ""}
                     </div>
