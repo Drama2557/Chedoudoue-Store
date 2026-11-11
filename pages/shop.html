@@ -397,6 +397,11 @@
         background: #1a1a1a;
       }
 
+      /* Portrait framing only for the Lace-Frontal catalog cards */
+      .product-card[data-product-id^="beaute-"] .product-image {
+        aspect-ratio: 3 / 4;
+      }
+
       .product-image img {
         width: 100%;
         height: 100%;
@@ -945,7 +950,7 @@
         return `
                 <div class="product-card" data-product-id="${product.id}" onclick="window.location.href='produits.html?id=${product.id}'">
                     <div class="product-image">
-                        <img src="../assets/images/${categoryFolder}/${product.image}" alt="${product.name}" loading="lazy">
+                        <img src="../assets/images/${categoryFolder}/${product.image}" alt="${product.name}" loading="lazy" ${product.category === 'beaute' ? `style="object-fit: ${product.image_fit === 'contain' ? 'contain' : 'cover'}; object-position: ${product.image_position || 'center'};"` : ""}>
                         ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ""}
                         ${product.new ? `<div class="product-badge" style="left: 12px;">NOUVEAU</div>` : ""}
                     </div>
