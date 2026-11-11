@@ -131,6 +131,7 @@ function createProductCard(product, variant = "default") {
           src="assets/images/${getImageFolder(product)}/${product.image}"
           alt="${product.name}"
           class="product-image"
+          style="object-fit: ${product.image_fit === "contain" ? "contain" : "cover"}; object-position: ${product.image_position || "center"};"
           loading="lazy"
         />
         ${product.new ? '<span class="badge badge-new">NOUVEAU</span>' : ""}
