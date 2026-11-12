@@ -445,32 +445,6 @@
         transform: scale(1.05);
       }
 
-      /* Réduit uniquement la photo Lace et adoucit le fond autour */
-      #featured-products .product-card[data-product-id="beaute-07"] .product-image {
-        isolation: isolate;
-      }
-
-      #featured-products .product-card[data-product-id="beaute-07"] .product-image::before {
-        content: "";
-        position: absolute;
-        inset: -12px;
-        z-index: 0;
-        background-image: url("assets/images/lace-frontal/cheveu%20(7).jpg");
-        background-size: cover;
-        background-position: center;
-        filter: blur(10px) brightness(0.72);
-        transform: scale(1.08);
-      }
-
-      #featured-products .product-card[data-product-id="beaute-07"] .product-image img {
-        position: relative;
-        z-index: 1;
-        display: block;
-        width: 92%;
-        height: 92%;
-        margin: 4%;
-      }
-
       .product-badge {
         display: none !important;
       }
