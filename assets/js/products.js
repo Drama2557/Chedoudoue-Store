@@ -15,7 +15,7 @@ async function loadProducts() {
       jsonPath = "../assets/data/products.json";
     }
     
-    const response = await fetch(jsonPath);
+    const response = await fetch(jsonPath, { cache: "no-cache" });
     const data = await response.json();
     products = data.products;
     categories = data.categories || [];
